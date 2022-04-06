@@ -17,7 +17,6 @@ const options = {
         0: {perPage: 1.5, perMove: 1.5},
     },
     type: 'slide',
-    lazyLoad: 'nearby' as const,
     focus: 0,
     rewind: true,
     width: '100%',

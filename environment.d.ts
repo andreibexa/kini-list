@@ -5,6 +5,7 @@ declare global {
             REACT_APP_API_V4_URL: string;
             REACT_APP_API_KEY: string;
             REACT_APP_ACCESS_TOKEN: string;
+            REACT_APP_API_COUNTRY_URL: string;
         }
     }
 }
