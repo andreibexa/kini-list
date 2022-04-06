@@ -4,6 +4,7 @@ import {Country} from 'types/api/configuration';
 import {apiClientV3} from '../utils/httpCommon';
 
 export const getConfiguration = async <T>() => {
+
     try {
         const {data} = await apiClientV3.get<T>('/configuration');
         return data;
@@ -30,6 +31,7 @@ export const getCountries = async <T>() => {
     try {
         const {data} = await apiClientV3.get<T>('/configuration/countries', {
                 headers: {
+                    'Cache-Control': 'public',
                     'Content-Type': 'application/json'
                 }
             },
