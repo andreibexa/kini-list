@@ -14,8 +14,7 @@ export const getConfiguration = async <T>() => {
 
 export const getCountryByIp = async <T>() => {
     try {
-
-        const {data} = await axios.get<T>(process.env.REACT_APP_API_COUNTRY_URL, {
+        const {data} = await axios.get<T>('https://ipapi.co/country', {
             headers: {
                 'Content-Type': 'application/json'
             },
