@@ -21,6 +21,6 @@ export default function useMovieTrendings(genreId?: number) {
     return {
         ...queryResults,
         movieTrendings: queryResults.data?.results,
-        isLoadingMovieTrendings: queryResults.isLoading
+        isSuccessMovieTrendings: queryResults.isSuccess
     };
 }

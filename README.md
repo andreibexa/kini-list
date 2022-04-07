@@ -1,7 +1,6 @@
-# KINILIST
+The Movie DB sample app using React and MUI.
 
-## Description
+## Try it
 
-Filter movie trailers by streaming providers and country.
+[https://kini-list.herokuapp.com/](https://kini-list.herokuapp.com/)
 
-Live example: [https://kini-list.herokuapp.com/](https://kini-list.herokuapp.com/)
