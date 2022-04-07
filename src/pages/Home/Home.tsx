@@ -58,19 +58,17 @@ function CarouselContainer({children}: PropsCarouselContainer) {
 }
 
 function Home() {
-    const {movieTrendings, isLoadingMovieTrendings} = useMovieTrendings();
-    const {movieGenres, isLoadingMovieGenres} = useMovieGenres();
+    const {movieTrendings, isSuccessMovieTrendings} = useMovieTrendings();
+    const {movieGenres} = useMovieGenres();
     const {genres} = useGenres();
     const [isFetching, setIsFetching] = React.useState<boolean>(true);
 
     useEffect(() => {
-        if (isLoadingMovieTrendings) {
-            setIsFetching(true);
-            return;
+        if (isSuccessMovieTrendings) {
+            setTimeout(() => setIsFetching(false), 750);
         }
 
-        setTimeout(() => setIsFetching(false), 750);
-    }, [isLoadingMovieTrendings]);
+    }, [isSuccessMovieTrendings]);
 
     if (!movieTrendings) {
         return null;
