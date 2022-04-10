@@ -1,7 +1,6 @@
 import { apiClientV3 } from 'utils/httpCommon';
 
-const getMovieProvider = async <T>(movie_id: number, signal: AbortSignal | undefined,
-) => {
+const getMovieProvider = async <T>(movie_id: number, signal: AbortSignal | undefined) => {
   try {
     const { data } = await apiClientV3.get<T>(`/movie/${movie_id}/watch/providers`, { signal });
 

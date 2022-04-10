@@ -2,7 +2,7 @@
   "name": "kini-list",
   "version": "1.0.0",
   "private": true,
-  "description": "Filter movie trailers for streaming providers and country",
+  "description": "A list with movie trailers. Includes a filter for Provider and Country",
   "main": "index.js",
   "author": "Andrei Bexa",
   "license": "",
