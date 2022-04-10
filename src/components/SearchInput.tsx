@@ -1,47 +1,74 @@
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
+import { alpha } from '@mui/material/styles';
+import InputBase, { InputBaseProps } from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { Box } from '@mui/material';
+import React from 'react';
+import theme from 'layouts/theme';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  flexGrow: 1,
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+interface Props {
+  children: React.ReactNode;
+}
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+function Search({ children }: Props) {
+  return (
+    <Box
+      sx={{
+        position: 'relative',
+        flexGrow: 1,
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        gap: 2,
+        marginLeft: 0,
+        sm: {
+          marginLeft: 3,
+          width: 'auto',
+        },
+      }}>
+      {children}
+    </Box>
+  );
+}
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+function SearchIconWrapper({ children }: Props) {
+  return (
+    <Box
+      sx={{
+        px: 2,
+        py: 0,
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      {children}
+    </Box>
+  );
+}
+
+function InputBaseSx({ placeholder, inputProps }: InputBaseProps) {
+  return (
+    <InputBase
+      placeholder={placeholder}
+      inputProps={inputProps}
+      sx={{
+        color: 'inherit',
+        height: theme.spacing(12),
+        '& .MuiInputBase-input': {
+          paddingLeft: '3rem',
+          width: '100%',
+          md: {
+            width: '20ch',
+          },
+        },
+      }}
+    />
+  );
+}
 
 export default function SearchBar() {
   return (
@@ -49,10 +76,7 @@ export default function SearchBar() {
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Movie, tv show, actor"
-        inputProps={{ 'aria-label': 'search' }}
-      />
+      <InputBaseSx placeholder="Movie, tv show, actor" inputProps={{ 'aria-label': 'search' }} />
     </Search>
   );
 }

@@ -1,40 +1,54 @@
-import styled from '@emotion/styled';
-import {Badge, Typography} from '@mui/material';
+import { Badge, BadgeProps, Typography } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
-import {MovieListResult} from 'types/api/generic';
+import { MovieListResult } from 'types/api/generic';
+import React from 'react';
+import THE_MOVIE_DB_BASE_URL from '../../appConstants';
 
-const StyledBadge = styled(Badge)(() => ({
-    '& .MuiBadge-badge': {
-        fontSize: '1.3rem',
-        width: '3.5rem',
-        height: '3.5rem',
-        top: '2rem',
-        right: '2rem',
-        background: 'rgba(0,0,0,.8)',
-        color: 'rgba(245, 197, 24)',
-        borderRadius: 0,
-    },
-}));
+type PropsBadge = BadgeProps & {
+  children: React.ReactNode;
+};
 
-interface TypeSlideContent {
-    voteAverage: MovieListResult['vote_average'];
-    title: MovieListResult['title'];
-    posterPath: MovieListResult['poster_path'];
+function BadgeSx({ children, overlap, badgeContent, anchorOrigin }: PropsBadge) {
+  return (
+    <Badge
+      overlap={overlap}
+      badgeContent={badgeContent}
+      anchorOrigin={anchorOrigin}
+      sx={{
+        '& .MuiBadge-badge': {
+          fontSize: '1.3rem',
+          width: '3.5rem',
+          height: '3.5rem',
+          top: '2rem',
+          right: '2rem',
+          background: 'rgba(0,0,0,.8)',
+          color: 'rgba(245, 197, 24)',
+          borderRadius: 0,
+        },
+      }}>
+      {children}
+    </Badge>
+  );
 }
 
-export default function SlideContent({voteAverage, title, posterPath}: TypeSlideContent) {
-    return (
-        <StyledBadge
-            overlap="rectangular"
-            badgeContent={<Typography component="span">{voteAverage}</Typography>}
-            anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
-            <CardMedia
-                component="img"
-                image={`https://image.tmdb.org/t/p/w300/${posterPath}`}
-                srcSet={`https://image.tmdb.org/t/p/w780/${posterPath} 2x`}
-                alt={title}
-                loading="lazy"
-            />
-        </StyledBadge>
-    );
+interface PropsSlideContent {
+  voteAverage: MovieListResult['vote_average'];
+  title: MovieListResult['title'];
+  posterPath: MovieListResult['poster_path'];
+}
+
+export default function SlideContent({ voteAverage, title, posterPath }: PropsSlideContent) {
+  return (
+    <BadgeSx
+      overlap="rectangular"
+      badgeContent={<Typography component="span">{voteAverage}</Typography>}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+      <CardMedia
+        component="img"
+        data-splide-lazy={`${THE_MOVIE_DB_BASE_URL}w300/${posterPath}`}
+        src={`${THE_MOVIE_DB_BASE_URL}w300/${posterPath}`}
+        alt={title}
+      />
+    </BadgeSx>
+  );
 }

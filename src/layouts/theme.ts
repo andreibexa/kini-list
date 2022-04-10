@@ -12,7 +12,7 @@ const theme = createTheme({
     },
     background: {
       paper: '#000',
-      default: '#121212'
+      default: '#121212',
     },
     primary: {
       main: '#D3D3D3',
@@ -42,21 +42,24 @@ const theme = createTheme({
       },
     },
   },
+  shape: {
+    borderRadius: 2,
+  },
+  spacing: (factor: number) => `${0.25 * factor}rem`,
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         html: {
           height: '100%',
         },
-        body:
-          [
-            darkScrollbar(),
-            {
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-            }
-          ],
+        body: [
+          darkScrollbar(),
+          {
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+          },
+        ],
         '#root': {
           height: '100%',
           display: 'flex',

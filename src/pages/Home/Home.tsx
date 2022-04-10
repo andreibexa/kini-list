@@ -1,126 +1,86 @@
-import {Alert} from '@mui/material';
+import { Alert } from '@mui/material';
 import Box from '@mui/material/Box';
-import MOVIEDB_BASE_URL from 'appConstants';
-import useMovieTrendings from 'hooks/useMovieTrendings';
+import useMoviesTop from 'hooks/useMoviesTop';
 import CenteredContent from 'components/CenteredContent';
-import {head} from 'lodash';
-import React, {useEffect} from 'react';
-import Hero from './components/hero/Hero';
-import Carousel from "../../components/carousel/Carousel";
-import useMovieGenres from "../../hooks/useMovieGenres";
-import useGenres from "../../hooks/useGenres";
+import React, { useEffect } from 'react';
+import { MovieListResult } from 'types/api/generic';
+import THE_MOVIE_DB_BASE_URL from 'appConstants';
+import useMovieGenres from 'hooks/useMovieGenres';
+import useGenres from 'hooks/useGenres';
+import Loader from 'components/Loader';
+import Hero from './components/Hero';
+import MovieList from './components/MovieList';
 
-type PropsCarouselContainer = { children: React.ReactNode }
-
-function CarouselContainer({children}: PropsCarouselContainer) {
-    return (
-        <Box
-            sx={{
-                mb: 4,
-                position: 'relative',
-                'span.MuiBadge-root': {
-                    border: '2px solid transparent',
-                    height: '100%',
-                },
-                '.is-active': {
-                    border: 'unset'
-                },
-                '.is-active>span': {
-                    border: '2px solid #ffffff'
-                },
-                'img': {
-                    border: '5px solid #000000',
-                    backgroundColor: '#000000',
-                },
-                '.is-active img': {
-                    border: '5px solid #000000'
-                },
-                '.splide__arrow': {
-                    width: '3.2em',
-                    height: '3.2em',
-                    background: 'transparent'
-                },
-                '.splide__arrow--next': {
-                    right: '.5em',
-                },
-                '.splide__arrow--prev': {
-                    left: '.5em',
-                },
-                '.splide__arrow svg': {
-                    width: 'auto',
-                    height: 'auto'
-                }
-            }}
-        >
-            {children}
-        </Box>
-    );
-}
+const img = new Image();
+const findFirstMovie = (moviesTop: MovieListResult[] | undefined) => moviesTop?.find((movie) => !!movie.backdrop_path);
 
 function Home() {
-    const {movieTrendings, isSuccessMovieTrendings} = useMovieTrendings();
-    const {movieGenres} = useMovieGenres();
-    const {genres} = useGenres();
-    const [isFetching, setIsFetching] = React.useState<boolean>(true);
+  const { moviesTop } = useMoviesTop();
+  const [heroMovie, setHeroMovie] = React.useState<MovieListResult | undefined>();
+  const [isLoadingHeroImage, setIsLoadingHeroImage] = React.useState<boolean>(true);
+  const { movieGenres } = useMovieGenres();
+  const { genres } = useGenres();
 
-    useEffect(() => {
-        if (isSuccessMovieTrendings) {
-            setTimeout(() => setIsFetching(false), 750);
-        }
-
-    }, [isSuccessMovieTrendings]);
-
-    if (!movieTrendings) {
-        return null;
+  useEffect(() => {
+    if (!moviesTop) {
+      return;
     }
 
-    if (movieTrendings && movieTrendings.length === 0) {
-        return (
-            <CenteredContent>
-                <Alert severity="error">No movies found. Try to filter by another country or provider</Alert>
-            </CenteredContent>
-        )
-    }
+    const firstMovie = findFirstMovie(moviesTop);
+    if (firstMovie) {
+      setIsLoadingHeroImage(true);
+      img.src = `${THE_MOVIE_DB_BASE_URL}w1280/${firstMovie.backdrop_path || 'default.jpg'}`;
 
-    const firstTrendingMovie = head(movieTrendings);
-    if (firstTrendingMovie && firstTrendingMovie.backdrop_path) {
-        const img = new Image();
-        img.src = `${MOVIEDB_BASE_URL}w1280/${firstTrendingMovie.backdrop_path}`;
+      img.onload = () => {
+        setIsLoadingHeroImage(false);
+        setHeroMovie(firstMovie);
+      };
     }
+  }, [moviesTop]);
 
+  if (moviesTop && moviesTop.length === 0) {
     return (
-        <Box
-            sx={[
-                {
-                    div: {
-                        transition: 'all .75s ease-in-out',
-                    },
-                },
-                isFetching
-                    ? {
-                        backgroundColor: '#000',
-                        div: {
-                            transition: 'all .75s linear',
-                            opacity: '0.1',
-                        },
-                    }
-                    : {},
-            ]}>
-            <Hero movie={firstTrendingMovie}/>
-            <CarouselContainer>
-                <Carousel movies={movieTrendings} title="Trending Now"/>
-            </CarouselContainer>
-            {
-                movieGenres && genres &&
-                movieGenres?.map((movies, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <CarouselContainer key={index}>
-                        <Carousel movies={movies.results} title={genres[index].name}/>
-                    </CarouselContainer>
-                ))
-            }
-        </Box>
+      <CenteredContent>
+        <Alert severity="error">
+          No movies found. Try to filter by another country or provider
+        </Alert>
+      </CenteredContent>
     );
+  }
+
+  if (!heroMovie) {
+    return <Loader/>;
+  }
+
+  const isLoadingHero = isLoadingHeroImage || !movieGenres || !genres;
+
+  return (
+    <>
+      {isLoadingHero && <Loader />}
+    <Box
+      sx={[
+        {
+          minHeight: '100vh',
+          div: {
+            transition: 'opacity 1s ease-in',
+            opacity: '1',
+          },
+        },
+        isLoadingHero
+          ? {
+              background: '#000',
+              div: {
+                transition: 'opacity 1s ease-out, background-image 1s ease-out',
+                opacity: '.1',
+              },
+            }
+          : {},
+      ]}>
+      <Hero movie={heroMovie} />
+      <MovieList />
+    </Box>
+    </>
+  );
 }
 
 export default Home;

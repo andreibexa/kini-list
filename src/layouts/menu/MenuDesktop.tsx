@@ -4,9 +4,10 @@ import Logo from 'components/Logo';
 import SearchInput from 'components/SearchInput';
 import pageLinks from 'routes/pageLinks';
 import ProvidersContainer from 'components/Providers/ProvidersContainer';
+import theme from 'layouts/theme';
 
 const buttons = pageLinks.map((item: IPageLinks) => (
-  <Button href={item.path} key={item.label} variant="text" color="secondary">
+  <Button href={item.path} key={item.label} color="secondary" sx={{ height: theme.spacing(12) }}>
     {item.label}
   </Button>
 ));
@@ -17,14 +18,13 @@ export default function MenuDesktop() {
       sx={{
         width: '100%',
         display: 'flex',
+        gap: 2,
         alignItems: 'center',
       }}>
       <Box>
         <Logo />
       </Box>
-      <Box mr={2} ml={3}>
-        {buttons}
-      </Box>
+      <Box>{buttons}</Box>
       <SearchInput />
       <ProvidersContainer />
     </Box>

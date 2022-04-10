@@ -9,6 +9,8 @@ import { setCountry } from 'state/reducer';
 import useCountry from 'hooks/useCountry';
 import filterActiveProviders from 'utils/providers';
 import useProviders from 'hooks/useProviders';
+import theme from 'layouts/theme';
+import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import CountrySelect from './CountrySelect';
 import ProvidersList from './ProvidersList';
 
@@ -20,7 +22,7 @@ function ProvidersContainer() {
   const open = Boolean(anchorEl);
 
   useEffect(() => {
-    if(country){
+    if (country) {
       dispatch(setCountry(country));
     }
   }, [country, dispatch]);
@@ -42,23 +44,22 @@ function ProvidersContainer() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{
+          height: theme.spacing(12),
           '&>img': {
             width: '2.5rem',
             ml: 1,
           },
         }}>
-        {
-        filterActiveProviders(providers, favoriteProviders)
+        {filterActiveProviders(providers, favoriteProviders)
           .slice(0, 3)
           .sort((a, b) => a.display_priority - b.display_priority)
           .map((provider) => (
             <img
-              src={`https://image.tmdb.org/t/p/w92/${provider.logo_path}`}
+              src={`${THE_MOVIE_DB_BASE_URL}w92${provider.logo_path}`}
               alt={`${provider.provider_name}`}
               key={provider.provider_id}
             />
-          ))
-          }
+          ))}
         <FilterListIcon sx={{ ml: 2, mr: 2 }} />
         <Typography>Filter</Typography>
       </Button>
@@ -72,8 +73,7 @@ function ProvidersContainer() {
           sx: {
             p: 2,
           },
-        }}
-        >
+        }}>
         <Box
           sx={{
             minWidth: '300px',

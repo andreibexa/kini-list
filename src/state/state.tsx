@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import { Action, State, StateProviderProps } from 'types/state';
 
 const initialState: State = {
@@ -19,9 +19,7 @@ export function StateProvider({ reducer, children }: StateProviderProps) {
     [state, dispatch]
   );
 
-  return (
-    <StateContext.Provider value={contextValue}>{children}</StateContext.Provider>
-  );
+  return <StateContext.Provider value={contextValue}>{children}</StateContext.Provider>;
 }
 
 export const useStateValue = () => useContext(StateContext);

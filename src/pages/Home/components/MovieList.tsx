@@ -1,80 +1,45 @@
-import React from "react";
-import useMoviesTop from "hooks/useMoviesTop";
-import Box from "@mui/material/Box";
-import Carousel from "../../../components/carousel/Carousel";
+import useMoviesTop from 'hooks/useMoviesTop';
+import useGenres from 'hooks/useGenres';
+import useMovieGenres from 'hooks/useMovieGenres';
+import CarouselWrapper from 'components/carousel/CarouselWrapper';
+import Carousel from 'components/carousel/Carousel';
+import { Box, Typography } from '@mui/material';
 
-type PropsCarouselContainer = { children: React.ReactNode }
-
-function CarouselContainer({children}: PropsCarouselContainer) {
-    return (
-        <Box
-            sx={{
-                mb: 4,
-                position: 'relative',
-                'span.MuiBadge-root': {
-                    border: '2px solid transparent',
-                    height: '100%',
-                },
-                '.is-active': {
-                    border: 'unset'
-                },
-                '.is-active>span': {
-                    border: '2px solid #ffffff'
-                },
-                'img': {
-                    border: '5px solid #000000',
-                    backgroundColor: '#000000',
-                },
-                '.is-active img': {
-                    border: '5px solid #000000'
-                },
-                '.splide__arrow': {
-                    width: '3.2em',
-                    height: '3.2em',
-                    background: 'transparent'
-                },
-                '.splide__arrow--next': {
-                    right: '.5em',
-                },
-                '.splide__arrow--prev': {
-                    left: '.5em',
-                },
-                '.splide__arrow svg': {
-                    width: 'auto',
-                    height: 'auto'
-                }
-            }}
-        >
-            {children}
-        </Box>
-    );
+function slideTilte(title: string) {
+  return (
+    <Typography component="h6" variant="h6" sx={{ padding: '0 4vw .5rem 4vw' }}>
+      {title}
+    </Typography>
+  );
 }
 
-function ListMovies() {
-    const {moviesTop} = useMoviesTop();
-    //   const {movieGenres} = useMovieGenres();
-    //  const {genres} = useGenres();
-    if (!moviesTop) {
-        return null;
-    }
+function MovieList() {
+  const { moviesTop } = useMoviesTop();
+  const { movieGenres } = useMovieGenres();
+  const { genres } = useGenres();
 
-    return (
-        <>
-            <CarouselContainer>
-                <Carousel movies={moviesTop} title="Trending Now"/>
-            </CarouselContainer>,
+  if (!moviesTop || !movieGenres || !genres) {
+    return null;
+  }
 
-            {/*
-                genres &&
-                movieGenres?.map((movies, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <CarouselContainer key={index}>
-                        <Carousel movies={movies.results} title={genres[index].name}/>
-                    </CarouselContainer>
-                ))
-            */}
-        </>
-    )
+  return (
+    <Box sx={{mt:'-25vh'}}>
+      <CarouselWrapper>
+        {slideTilte('Trending Now')}
+        <Carousel movies={moviesTop} />
+      </CarouselWrapper>
+
+      {
+        movieGenres.map((movies, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <CarouselWrapper key={index}>
+            {slideTilte(genres[index].name)}
+            <Carousel movies={movies.results} />
+          </CarouselWrapper>
+        ))
+      }
+    </Box>
+  );
 }
 
-export default ListMovies;
+export default MovieList;

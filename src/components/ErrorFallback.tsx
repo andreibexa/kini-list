@@ -1,4 +1,4 @@
-import { Alert, Paper, Stack } from "@mui/material"
+import { Alert, Paper, Stack } from '@mui/material';
 
 type ErrorFallbackProps = {
   error: Error;
@@ -11,14 +11,13 @@ export default function ErrorFallback({ error }: ErrorFallbackProps) {
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      sx={{height:'100%'}}
-      >
+      sx={{ height: '100%' }}>
       <Paper>
         <Alert severity="error">
           <p>Something went wrong:</p>
           <pre>{error.message}</pre>
-      </Alert>
-    </Paper>
+        </Alert>
+      </Paper>
     </Stack>
   );
 }

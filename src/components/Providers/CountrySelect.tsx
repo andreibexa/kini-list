@@ -7,14 +7,14 @@ import useCountries from 'hooks/useCountries';
 import { setCountry } from 'state/reducer';
 
 export default function CountrySelect() {
-  const [{country}, dispatch] = useStateValue()
+  const [{ country }, dispatch] = useStateValue();
   const countries = useCountries();
 
   const handleChange = (selected: Country | null) => {
     if (selected) {
       dispatch(setCountry(selected));
     }
-  }
+  };
 
   if (!countries) {
     return null;

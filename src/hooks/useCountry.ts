@@ -2,27 +2,23 @@ import useCountries from 'hooks/useCountries';
 import { useQuery } from 'react-query';
 import { getCountryByIp } from 'services/configurationService';
 import { useStateValue } from 'state/state';
+import { Countries } from 'types/api/configuration';
+
+const findCountry = (countries: Countries, countryIso: string | undefined) =>
+  countries.find((item) => item.iso_3166_1 === countryIso);
 
 export default function useCountry() {
   const countries = useCountries();
-  const [{ country }] = useStateValue();
+  const [{ country: stateCountry }] = useStateValue();
 
-  const queryInfo = useQuery<string, Error>(
-    ['country'], () => getCountryByIp(),
-    {
-      enabled: !!countries
-    });
+  const queryInfo = useQuery<string, Error>(['country'], () => getCountryByIp(), {
+    enabled: !!countries,
+  });
 
-  const defaultCountry = (countryIso: string | undefined) => {
-    if (!countryIso || !countries) {
-      return null;
-    }
-
-    return countries.find((item) => item.iso_3166_1 === countryIso);
-  }
+  const defaultCountry = countries ? findCountry(countries, queryInfo.data) : null;
 
   return {
     ...queryInfo,
-    country: country || defaultCountry(queryInfo.data),
+    country: stateCountry || defaultCountry,
   };
 }

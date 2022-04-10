@@ -1,8 +1,9 @@
-import {Splide, SplideSlide} from '@splidejs/react-splide';
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import '@splidejs/splide/dist/css/splide.min.css';
+import {Splide, SplideSlide} from '@splidejs/react-splide';
 import {MovieListResult} from 'types/api/generic';
-import Typography from '@mui/material/Typography';
 import SlideContent from './SlideContent';
 
 const options = {
@@ -16,11 +17,12 @@ const options = {
         330: {perPage: 2, perMove: 2},
         0: {perPage: 1.5, perMove: 1.5},
     },
+    lazy: 'nearby',
     type: 'slide',
     focus: 0,
     rewind: true,
-    width: '100%',
     cover: true,
+    gap: '.5em',
     padding: {left: '4vw', right: '4vw'},
     arrows: true,
     updateOnMove: true,
@@ -37,38 +39,32 @@ const toggleLeftArrow = (index = 0) => {
 
 type Props = {
     movies: MovieListResult[];
-    title: string;
 };
 
-export default function Carousel({movies, title}: Props) {
+export default function Carousel({movies}: Props) {
+
     return (
-        <>
-            <Typography
-                component="h6"
-                variant="h6"
-                sx={{padding: '0 4vw .5rem 4vw'}}
-            >
-                {title}
-            </Typography>
-            <Splide
-                options={options}
-                onMove={(splide, index) => {
-                    toggleLeftArrow(index);
-                }}
-                onMounted={() => {
-                    toggleLeftArrow();
-                }}
-            >
-                {movies.map((movie) => (
-                    <SplideSlide key={movie.id}>
-                        <SlideContent
-                            voteAverage={movie.vote_average}
-                            title={movie.title}
-                            posterPath={movie.poster_path}
-                        />
+        // @ts-ignore
+        <Splide
+            options={options}
+            onMove={(_splide, index) => {
+                toggleLeftArrow(index);
+            }}
+            onMounted={() => {
+                toggleLeftArrow();
+            }}
+        >
+            {
+
+                movies.map((movie) => movie.poster_path && <SplideSlide key={movie.id}>
+                      <SlideContent
+                          voteAverage={movie.vote_average}
+                          title={movie.title}
+                          posterPath={movie.poster_path}
+                      />
                     </SplideSlide>
-                ))}
-            </Splide>
-        </>
+                )
+            }
+        </Splide>
     );
 }
