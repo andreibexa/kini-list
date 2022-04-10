@@ -3,18 +3,23 @@ import MOVIEDB_BASE_URL from 'appConstants';
 import {MovieListResult} from 'types/api/generic';
 import HeroContent from './HeroContent';
 
-type Props = {
-    movie: MovieListResult | undefined
-}
-export default function Hero({movie}: Props) {
-    if (!movie || !movie.backdrop_path) {
+
+export default function Hero({movie}: { movie: MovieListResult }) {
+    
+    if (!movie) {
         return null;
     }
 
-    const background: MovieListResult['backdrop_path'] = movie.backdrop_path;
+    if (!movie.backdrop_path) {
+        throw Error('Movie background not found in Hero component');
+    }
+
+    const backgroundUrl = `${MOVIEDB_BASE_URL}w1280/${movie.backdrop_path}`;
 
     const sxHeroUnit = {
-        background: `url(${MOVIEDB_BASE_URL}w1280/${background}) no-repeat`,
+        background: `url(${backgroundUrl}) no-repeat`,
+        webkitTransition: 'background-image 1s ease-in-out',
+        transition: 'background-image 1s ease-in-out',
         height: '100vh',
         mb: '-25vh',
         minHeight: '710px',

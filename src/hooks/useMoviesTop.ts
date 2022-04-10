@@ -5,7 +5,7 @@ import {useQuery} from "react-query";
 import {Movies} from "types/api/movies";
 import useProviders from './useProviders';
 
-export default function useMovieTrendings(genreId?: number) {
+export default function useMovieTop(genreId?: number) {
     const [{favoriteProviders, country}] = useStateValue();
 
     const {providers} = useProviders();
@@ -21,6 +21,7 @@ export default function useMovieTrendings(genreId?: number) {
     return {
         ...queryResults,
         movieTrendings: queryResults.data?.results,
+        isLoadingMovieTrendings: queryResults.isLoading,
         isSuccessMovieTrendings: queryResults.isSuccess
     };
 }

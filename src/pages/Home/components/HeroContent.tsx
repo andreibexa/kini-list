@@ -11,6 +11,7 @@ import {useStateValue} from 'state/state';
 import {Provider} from 'types/api/watch';
 import useGenres from 'hooks/useGenres';
 
+
 type PropsBox = {
     children: React.ReactNode;
 };
@@ -38,7 +39,9 @@ function BoxContainer({children}: PropsBox) {
 type Props = {
     movie: MovieListResult;
 };
+
 export default function HeroContent({movie}: Props) {
+
     const [{country}] = useStateValue();
     const {movieProviders} = useMovieProviders(movie.id);
     const {genres} = useGenres();
