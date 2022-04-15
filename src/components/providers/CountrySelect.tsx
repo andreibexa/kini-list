@@ -1,3 +1,4 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -6,15 +7,18 @@ import { useStateValue } from 'state/state';
 import useCountries from 'hooks/useCountries';
 import { setCountry } from 'state/reducer';
 
-export default function CountrySelect() {
+function CountrySelect() {
   const [{ country }, dispatch] = useStateValue();
   const countries = useCountries();
 
-  const handleChange = (selected: Country | null) => {
-    if (selected) {
-      dispatch(setCountry(selected));
-    }
-  };
+  const handleChange = React.useCallback(
+    (selected: Country | null) => {
+      if (selected) {
+        dispatch(setCountry(selected));
+      }
+    },
+    [dispatch],
+  );
 
   if (!countries) {
     return null;
@@ -28,7 +32,7 @@ export default function CountrySelect() {
       autoHighlight
       getOptionLabel={(option) => `${option.english_name} (${option.iso_3166_1})`}
       value={country || null}
-      onChange={(event: unknown, selected: Country | null) => {
+      onChange={(_event: unknown, selected: Country | null) => {
         handleChange(selected);
       }}
       isOptionEqualToValue={(option, val) => option.iso_3166_1 === val.iso_3166_1}
@@ -42,7 +46,11 @@ export default function CountrySelect() {
             srcSet={`https://flagcdn.com/w40/${option.iso_3166_1.toLowerCase()}.png 2x`}
             alt=""
           />
-          {option.english_name} ({option.iso_3166_1})
+          {option.english_name}
+          {' '}
+          (
+          {option.iso_3166_1}
+          )
         </Box>
       )}
       renderInput={(params) => (
@@ -59,3 +67,5 @@ export default function CountrySelect() {
     />
   );
 }
+
+export default CountrySelect;

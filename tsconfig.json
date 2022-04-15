@@ -21,6 +21,6 @@
     "allowJs": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "environment.d.ts"],
+  "include": ["src", "types", "environment.d.ts"],
   "exclude": ["node_modules", "build"]
 }

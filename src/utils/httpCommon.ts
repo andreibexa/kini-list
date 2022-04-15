@@ -8,8 +8,8 @@ export const apiClientV3 = axios.create({
   params:
     process.env.NODE_ENV !== 'production'
       ? {
-          api_key: process.env.REACT_APP_API_KEY,
-        }
+        api_key: process.env.REACT_APP_API_KEY,
+      }
       : {},
 });
 
@@ -18,8 +18,8 @@ export const apiClientV4 = axios.create({
   headers:
     process.env.NODE_ENV !== 'production'
       ? {
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-          'Content-type': 'application/json;charset=utf-8',
-        }
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+        'Content-type': 'application/json;charset=utf-8',
+      }
       : {},
 });

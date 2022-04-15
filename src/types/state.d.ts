@@ -4,17 +4,17 @@ import { Provider } from './api/watch';
 
 export type Action =
   | {
-      type: 'SET_STATE';
-      payload: State;
-    }
+    type: 'SET_STATE';
+    payload: State;
+  }
   | {
-      type: 'SET_COUNTRY';
-      payload: Country;
-    }
+    type: 'SET_COUNTRY';
+    payload: Country;
+  }
   | {
-      type: 'SET_FAVORITE_PROVIDERS';
-      payload: Provider[];
-    };
+    type: 'SET_FAVORITE_PROVIDERS';
+    payload: Provider[];
+  };
 
 export type State = {
   country: Country | undefined;

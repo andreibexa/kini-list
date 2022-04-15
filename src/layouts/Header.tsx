@@ -1,4 +1,6 @@
-import { AppBar, Hidden, Toolbar, useScrollTrigger } from '@mui/material';
+import {
+  AppBar, Hidden, Toolbar, useScrollTrigger,
+} from '@mui/material';
 import MenuDesktop from './menu/MenuDesktop';
 
 export default function Header() {

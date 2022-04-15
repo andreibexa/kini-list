@@ -4,9 +4,6 @@ module.exports = {
     browser: true,
   },
   extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
     'plugin:json-schema-validator/recommended',
     'plugin:promise/recommended',
     'eslint:recommended',
@@ -17,6 +14,9 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:eslint-comments/recommended',
     'prettier',
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -29,6 +29,18 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
+    'max-len': [
+      'error',
+      100,
+      2,
+      {
+        ignoreUrls: true,
+        ignoreComments: false,
+        ignoreRegExpLiterals: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+      },
+    ],
   },
   settings: {
     react: {

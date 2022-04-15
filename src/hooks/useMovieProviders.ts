@@ -6,7 +6,7 @@ const useMovieProviders = (movieId: number) => {
   const queryInfo = useQuery<ResultsMovieProviders, Error>(
     ['providers', movieId],
     ({ signal }) => getMovieProvider(movieId, signal),
-    {}
+    {},
   );
 
   return {

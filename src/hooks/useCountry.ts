@@ -4,8 +4,9 @@ import { getCountryByIp } from 'services/configurationService';
 import { useStateValue } from 'state/state';
 import { Countries } from 'types/api/configuration';
 
-const findCountry = (countries: Countries, countryIso: string | undefined) =>
-  countries.find((item) => item.iso_3166_1 === countryIso);
+function findCountry(countries: Countries, countryIso: string | undefined) {
+  return countries.find((item) => item.iso_3166_1 === countryIso);
+}
 
 export default function useCountry() {
   const countries = useCountries();

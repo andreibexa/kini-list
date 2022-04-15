@@ -4,21 +4,26 @@ import logoTmdb from 'assets/img/logo-tmdb.svg';
 export default function Footer() {
   return (
     <Box
+      component="footer"
       sx={{
         height: '2rem',
-        mb: '2rem',
+        py: '2rem',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-      }}>
+        px: '4vw',
+      }}
+    >
       <Typography>
-        This product uses the TMDB API but is not endorsed or certified by{' '}
+        This product uses the TMDB API but is not endorsed or certified by
+        {' '}
         <Link
           href="https://www.themoviedb.org/"
           title="The Movie Database"
           rel="noopener noreferrer"
-          target="_blank">
+          target="_blank"
+        >
           TMDB
         </Link>
         .
@@ -28,7 +33,8 @@ export default function Footer() {
         title="The Movie Database"
         rel="noopener noreferrer"
         target="_blank"
-        sx={{ height: '100%' }}>
+        sx={{ height: 'inherit' }}
+      >
         <img src={logoTmdb} loading="lazy" alt="The Movie Database" height="100%" />
       </Link>
     </Box>

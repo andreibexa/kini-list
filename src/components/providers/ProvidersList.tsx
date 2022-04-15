@@ -1,9 +1,11 @@
-import { Alert, CircularProgress, ImageList, Typography } from '@mui/material';
+import {
+  Alert, CircularProgress, ImageList, Typography,
+} from '@mui/material';
 import CenteredContent from 'components/CenteredContent';
 import useProviders from 'hooks/useProviders';
 import ProviderSingle from './ProviderSingle';
 
-function ProvidersList() {
+export default function ProvidersList() {
   const { providers, isSuccess } = useProviders();
   const hasEntries = providers ? providers.length : false;
 
@@ -34,7 +36,8 @@ function ProvidersList() {
           width: '100%',
           pl: 2,
           pt: 2.5,
-        }}>
+        }}
+      >
         Streaming services
       </Typography>
       <ImageList cols={3} gap={10}>
@@ -45,5 +48,3 @@ function ProvidersList() {
     </>
   );
 }
-
-export default ProvidersList;

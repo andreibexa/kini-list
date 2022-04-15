@@ -1,9 +1,9 @@
-import useMoviesTop from 'hooks/useMoviesTop';
 import useGenres from 'hooks/useGenres';
-import useMovieGenres from 'hooks/useMovieGenres';
 import CarouselWrapper from 'components/carousel/CarouselWrapper';
 import Carousel from 'components/carousel/Carousel';
 import { Box, Typography } from '@mui/material';
+import useMoviesTop from 'hooks/useMoviesTop';
+import useMovieGenres from 'hooks/useMovieGenres';
 
 function slideTilte(title: string) {
   return (
@@ -13,7 +13,7 @@ function slideTilte(title: string) {
   );
 }
 
-function MovieList() {
+export default function MovieList() {
   const { moviesTop } = useMoviesTop();
   const { movieGenres } = useMovieGenres();
   const { genres } = useGenres();
@@ -23,23 +23,19 @@ function MovieList() {
   }
 
   return (
-    <Box sx={{mt:'-25vh'}}>
+    <Box sx={{ mt: '-25vh' }}>
       <CarouselWrapper>
         {slideTilte('Trending Now')}
         <Carousel movies={moviesTop} />
       </CarouselWrapper>
 
-      {
-        movieGenres.map((movies, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <CarouselWrapper key={index}>
-            {slideTilte(genres[index].name)}
-            <Carousel movies={movies.results} />
-          </CarouselWrapper>
-        ))
-      }
+      {movieGenres.map((movies, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <CarouselWrapper key={index}>
+          {slideTilte(genres[index].name)}
+          <Carousel movies={movies.results} />
+        </CarouselWrapper>
+      ))}
     </Box>
   );
 }
-
-export default MovieList;

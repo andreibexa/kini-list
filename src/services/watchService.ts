@@ -6,7 +6,7 @@ const getProvidersMovie = async <T>(countryIso: string | undefined) => {
     validateCountryIso(countryIso);
 
     const { data } = await apiClientV3.get<T>(
-      `/watch/providers/movie?watch_region=${countryIso || 'us'}`
+      `/watch/providers/movie?watch_region=${countryIso || 'us'}`,
     );
     return data;
   } catch (error) {

@@ -11,7 +11,8 @@ export default function CenteredContent({ children }: Props) {
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      sx={{ height: '100%' }}>
+      sx={{ height: '100%' }}
+    >
       {children}
     </Stack>
   );

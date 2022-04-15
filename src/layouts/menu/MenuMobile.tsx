@@ -1,8 +1,10 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText,
+} from '@mui/material';
 import { useState } from 'react';
 import Logo from 'components/Logo';
-import Search from 'components/SearchInput';
+import Search from 'components/search/SearchInput';
 import pageLinks from 'routes/pageLinks';
 
 const listItems = pageLinks.map((item) => (
@@ -35,13 +37,15 @@ export default function MenuMobile() {
           anchor: 'left',
           toggleMenu,
           onClose: handleClose,
-        }}>
+        }}
+      >
         <Box
           sx={{
             padding: '1px',
             display: 'flex',
             flexDirection: 'column',
-          }}>
+          }}
+        >
           <List component="nav" aria-label="Home Movies Series Browse...">
             <Logo />
             <Search />

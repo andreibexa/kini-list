@@ -11,7 +11,8 @@ export default function ErrorFallback({ error }: ErrorFallbackProps) {
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      sx={{ height: '100%' }}>
+      sx={{ height: '100%' }}
+    >
       <Paper>
         <Alert severity="error">
           <p>Something went wrong:</p>

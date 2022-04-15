@@ -5,7 +5,7 @@ import validateCountryIso from 'utils/validator';
 const getDiscoverMovie = async <T>(
   countryIso: string | undefined,
   providers: Provider[],
-  genreId?: number
+  genreId?: number,
 ) => {
   try {
     validateCountryIso(countryIso);
@@ -16,7 +16,7 @@ const getDiscoverMovie = async <T>(
     const { data } = await apiClientV3.get<T>(
       `/discover/movie?watch_region=${
         countryIso || 'us'
-      }&with_watch_providers=${pipeProviderIds}&with_genres=${genreId || ''}`
+      }&with_watch_providers=${pipeProviderIds}&with_genres=${genreId || ''}`,
     );
 
     return data;

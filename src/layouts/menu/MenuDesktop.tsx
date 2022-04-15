@@ -1,18 +1,25 @@
 import { Box, Button } from '@mui/material';
 import { IPageLinks } from 'types/pageLinks';
 import Logo from 'components/Logo';
-import SearchInput from 'components/SearchInput';
+import SearchInput from 'components/search/SearchInput';
 import pageLinks from 'routes/pageLinks';
-import ProvidersContainer from 'components/Providers/ProvidersContainer';
+import ProvidersWrapper from 'components/providers/ProvidersWrapper';
 import theme from 'layouts/theme';
 
-const buttons = pageLinks.map((item: IPageLinks) => (
-  <Button href={item.path} key={item.label} color="secondary" sx={{ height: theme.spacing(12) }}>
+const buttons = pageLinks.map(
+  (item: IPageLinks) => item.visible && (
+  <Button
+    href={item.path}
+    key={item.label}
+    color="secondary"
+    sx={{ height: theme.spacing(12) }}
+  >
     {item.label}
   </Button>
-));
+  ),
+);
 
-export default function MenuDesktop() {
+function MenuDesktop() {
   return (
     <Box
       sx={{
@@ -20,13 +27,16 @@ export default function MenuDesktop() {
         display: 'flex',
         gap: 2,
         alignItems: 'center',
-      }}>
+      }}
+    >
       <Box>
         <Logo />
       </Box>
       <Box>{buttons}</Box>
       <SearchInput />
-      <ProvidersContainer />
+      <ProvidersWrapper />
     </Box>
   );
 }
+
+export default MenuDesktop;

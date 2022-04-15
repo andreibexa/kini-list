@@ -7,12 +7,11 @@ type PropsCarouselWrapper = {
   sx?: SxProps<Theme>;
 };
 
-export default function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
+function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
   return (
     <Box
       sx={[
         {
-          mb: 4,
           position: 'relative',
           'span.MuiBadge-root': {
             border: '2px solid transparent',
@@ -21,12 +20,8 @@ export default function CarouselWrapper({ sx = [], children }: PropsCarouselWrap
           '.is-active': {
             border: 'unset',
           },
-          '.is-active>span': {
+          '&:first-of-type .is-active>span': {
             border: '2px solid #ffffff',
-          },
-          img: {
-            border: '5px solid #000000',
-            backgroundColor: '#000000',
           },
           '.is-active img': {
             border: '5px solid #000000',
@@ -65,11 +60,14 @@ export default function CarouselWrapper({ sx = [], children }: PropsCarouselWrap
           },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
-      ]}>
+      ]}
+    >
       {children}
     </Box>
   );
 }
+
+export default CarouselWrapper;
 
 CarouselWrapper.defaultProps = {
   sx: [],

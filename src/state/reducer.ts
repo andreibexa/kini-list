@@ -35,10 +35,10 @@ export const setCountry = (country: Country): Action => ({
 
 export const toggleFavoriteProvider = (
   provider: Provider,
-  favoriteProviders: State['favoriteProviders']
+  favoriteProviders: State['favoriteProviders'],
 ): Action => {
   const index = favoriteProviders.findIndex(
-    (favorite) => favorite.provider_id === provider.provider_id
+    (favorite) => favorite.provider_id === provider.provider_id,
   );
 
   if (index === -1) {

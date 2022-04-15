@@ -1,5 +1,7 @@
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import { Avatar, AvatarGroup, Box, Button, Typography } from '@mui/material';
+import {
+  Avatar, AvatarGroup, Box, Button, Typography,
+} from '@mui/material';
 import React, { useEffect } from 'react';
 import theme from 'layouts/theme';
 import { MovieListResult } from 'types/api/generic';
@@ -23,13 +25,12 @@ function BoxContainer({ children }: PropsBox) {
         margin: theme.spacing(0, 0, 0, -3),
         background: 'rgba(0,0,0,0.5)',
         borderRadius: theme.shape.borderRadius,
-        position: 'relative',
-        zIndex: 10,
         width: {
           xl: '47%',
           xs: '100%',
         },
-      }}>
+      }}
+    >
       {children}
     </Box>
   );
@@ -82,7 +83,8 @@ export default function HeroContent({ movie }: Props) {
           display: 'flex',
           alignItems: 'center',
           mt: theme.spacing(4),
-        }}>
+        }}
+      >
         <Button
           variant="contained"
           size="large"
@@ -96,7 +98,8 @@ export default function HeroContent({ movie }: Props) {
                 color: red[900],
               },
             },
-          }}>
+          }}
+        >
           <PlayCircleOutlineIcon sx={{ fontSize: '3rem', fontWeight: 300 }} />
           &nbsp; Play trailer
         </Button>
@@ -106,19 +109,18 @@ export default function HeroContent({ movie }: Props) {
             flexGrow: 1,
             alignItems: 'center',
             textAlign: 'right',
-          }}>
-          {providers && (
-            <AvatarGroup max={6} spacing={-5}>
-              {providers.map((provider) => (
-                <Avatar
-                  variant="square"
-                  src={`${THE_MOVIE_DB_BASE_URL}w92${provider.logo_path}`}
-                  alt={provider.provider_name}
-                  key={provider.provider_id}
-                />
-              ))}
-            </AvatarGroup>
-          )}
+          }}
+        >
+          <AvatarGroup max={6} spacing={-5}>
+            {providers?.map((provider) => (
+              <Avatar
+                variant="square"
+                src={`${THE_MOVIE_DB_BASE_URL}w92${provider.logo_path}`}
+                alt={provider.provider_name}
+                key={provider.provider_id}
+              />
+            ))}
+          </AvatarGroup>
         </Box>
       </Box>
     </BoxContainer>

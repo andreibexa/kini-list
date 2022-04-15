@@ -8,6 +8,7 @@ const useGenres = () => {
   return {
     ...queryInfo,
     genres: queryInfo.data?.genres,
+    isLoadingGenres: queryInfo.isLoading,
   };
 };
 
