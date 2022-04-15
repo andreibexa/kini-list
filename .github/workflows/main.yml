@@ -1,0 +1,9 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy 
+
+on:
+  workflow_dispatch
+
+env:
+  REACT_APP_API_V3_URL: https://api-key-proxy-server.herokuapp.com/api/3
