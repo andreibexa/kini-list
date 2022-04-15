@@ -8,7 +8,8 @@
   "license": "",
   "scripts": {
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build:ui": "npm run prettier-format && npm run lint:fix && npm run build && cp build/index.html build/404.html",
+    "build": "npm run build",
+    "build:ui": "npm run prettier-format && npm run lint:fix && npm run build",
     "tsc": "tsc",
     "lint": "eslint './src/**/*.{ts,tsx}' --cache --config .eslintrc.js",
     "lint:fix": "eslint  './src/**/*.{ts,tsx}' --cache --fix --config .eslintrc.js",
