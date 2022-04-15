@@ -1,17 +1,15 @@
-import {useQuery} from 'react-query';
+import { useQuery } from 'react-query';
 import getMovieGenres from 'services/genreService';
-import {GenresMovieList} from 'types/api/genres';
+import { GenresMovieList } from 'types/api/genres';
 
 const useGenres = () => {
-    const queryInfo = useQuery<GenresMovieList, Error>(
-        ['genres'],
-        () => getMovieGenres(),
-        {});
+  const queryInfo = useQuery<GenresMovieList, Error>(['genres'], () => getMovieGenres(), {});
 
-    return {
-        ...queryInfo,
-        genres: queryInfo.data?.genres,
-    };
+  return {
+    ...queryInfo,
+    genres: queryInfo.data?.genres,
+    isLoadingGenres: queryInfo.isLoading,
+  };
 };
 
 export default useGenres;

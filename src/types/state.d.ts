@@ -1,5 +1,6 @@
-import { Country } from "./api/configuration";
-import { Provider } from "./api/watch";
+import React from 'react';
+import { Country } from './api/configuration';
+import { Provider } from './api/watch';
 
 export type Action =
   | {

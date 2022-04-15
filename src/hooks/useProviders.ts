@@ -12,7 +12,8 @@ const useProviders = () => {
     () => getProvidersMovie(countryIso),
     {
       enabled: !!countryIso,
-    });
+    },
+  );
 
   return {
     ...queryInfo,

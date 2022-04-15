@@ -12,14 +12,16 @@ export default function Logo() {
       sx={{
         display: 'flex',
         alignItems: 'center',
-      }}>
+      }}
+    >
       <Typography
         variant="h6"
         noWrap
         sx={{
           letterSpacing: 2,
           color: (theme: Theme) => theme.palette.secondary.dark,
-        }}>
+        }}
+      >
         KINILIST
       </Typography>
       <Videocam

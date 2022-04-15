@@ -10,9 +10,7 @@ export default function Layout() {
       <Box component="main">
         <Outlet />
       </Box>
-      <Box component="footer" sx={{ pl: '4vw', pr: '4vw' }}>
-        <Footer />
-      </Box>
+      <Footer />
     </>
   );
 }

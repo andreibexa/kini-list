@@ -1,11 +1,10 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { StateProvider } from 'state/state';
 import { reducer } from 'state/reducer';
+import RoutesComponent from 'routes/RoutesComponent';
 import ErrorFallback from './components/ErrorFallback';
-import CRoutes from './routes/Routes';
 import theme from './layouts/theme';
 
 export const queryClient = new QueryClient({
@@ -27,11 +26,10 @@ function App() {
         <CssBaseline />
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <StateProvider reducer={reducer}>
-            <CRoutes />
+            <RoutesComponent />
           </StateProvider>
         </ErrorBoundary>
       </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

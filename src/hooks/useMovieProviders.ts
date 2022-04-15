@@ -3,11 +3,11 @@ import getMovieProvider from 'services/movieService';
 import { ResultsMovieProviders } from 'types/api/movies';
 
 const useMovieProviders = (movieId: number) => {
-
   const queryInfo = useQuery<ResultsMovieProviders, Error>(
     ['providers', movieId],
-    () => getMovieProvider(movieId),
-    {});
+    ({ signal }) => getMovieProvider(movieId, signal),
+    {},
+  );
 
   return {
     ...queryInfo,

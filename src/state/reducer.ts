@@ -10,34 +10,36 @@ export const reducer = (state: State, action: Action): State => {
     case 'SET_COUNTRY':
       return {
         ...state,
-        country: action.payload
+        country: action.payload,
       };
     case 'SET_FAVORITE_PROVIDERS':
       return {
         ...state,
-        favoriteProviders: action.payload
-      }
+        favoriteProviders: action.payload,
+      };
     default:
       return state;
   }
 };
 
 // Action creators
-export const setState = (state: State): Action => (
-  {
-    type: 'SET_STATE',
-    payload: state
-  }
-)
-
-export const setCountry = (country: Country): Action => ({
-  type: "SET_COUNTRY",
-  payload: country
+export const setState = (state: State): Action => ({
+  type: 'SET_STATE',
+  payload: state,
 });
 
-export const toggleFavoriteProvider = (provider: Provider, favoriteProviders: State["favoriteProviders"]): Action => {
+export const setCountry = (country: Country): Action => ({
+  type: 'SET_COUNTRY',
+  payload: country,
+});
 
-  const index = favoriteProviders.findIndex((favorite) => favorite.provider_id === provider.provider_id);
+export const toggleFavoriteProvider = (
+  provider: Provider,
+  favoriteProviders: State['favoriteProviders'],
+): Action => {
+  const index = favoriteProviders.findIndex(
+    (favorite) => favorite.provider_id === provider.provider_id,
+  );
 
   if (index === -1) {
     favoriteProviders.unshift(provider);
@@ -49,6 +51,6 @@ export const toggleFavoriteProvider = (provider: Provider, favoriteProviders: St
 
   return {
     type: 'SET_FAVORITE_PROVIDERS',
-    payload: favoriteProviders
-  }
-}
+    payload: favoriteProviders,
+  };
+};

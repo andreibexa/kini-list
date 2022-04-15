@@ -1,4 +1,6 @@
-import { createContext, useContext, useMemo, useReducer } from 'react';
+import React, {
+  createContext, useContext, useMemo, useReducer,
+} from 'react';
 import { Action, State, StateProviderProps } from 'types/state';
 
 const initialState: State = {
@@ -16,12 +18,10 @@ export function StateProvider({ reducer, children }: StateProviderProps) {
 
   const contextValue = useMemo<[State, React.Dispatch<Action>]>(
     () => [state, dispatch],
-    [state, dispatch]
+    [state, dispatch],
   );
 
-  return (
-    <StateContext.Provider value={contextValue}>{children}</StateContext.Provider>
-  );
+  return <StateContext.Provider value={contextValue}>{children}</StateContext.Provider>;
 }
 
 export const useStateValue = () => useContext(StateContext);

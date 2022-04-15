@@ -1,17 +1,13 @@
 import localForage from 'localforage';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 
 localForage.config({
-  driver: [
-    localForage.INDEXEDDB,
-    localForage.LOCALSTORAGE,
-    localForage.WEBSQL,
-  ],
-  name: 'myApp',     // These fields
-  version: 1.0,      // are totally optional
+  driver: [localForage.INDEXEDDB, localForage.LOCALSTORAGE, localForage.WEBSQL],
+  name: 'myApp', // These fields
+  version: 1.0, // are totally optional
 });
 
 const rootElement = document.getElementById('root');
@@ -20,7 +16,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,

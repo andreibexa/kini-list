@@ -24,17 +24,18 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# env files
 .env
 .env.development
-.env.test.local
-.env.production.local
+.env.test
+.env.production
 
 # vercel
 .vercel
 
-#vscode
+# IDE
 .vscode
+.idea
 
-#Snyk extension
+# Snyk extension
 .dccache
