@@ -28,7 +28,7 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
           },
           '.splide__slide[aria-hidden=true]:before': {
             position: 'absolute',
-            background: 'rgba(16, 16, 17, .5)',
+            background: 'rgba(16, 16, 17, .8)',
             content: '""',
             width: '100%',
             height: '100%',
@@ -38,16 +38,20 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
             background: 'transparent',
             width: '4vw',
             height: '100%',
-            '&:hover svg': {
-              opacity: 1,
-              transform: 'scale(2)',
-            },
+            opacity: 0,
+          },
+          '&:hover .splide__arrow': {
+            opacity: 1,
           },
           '.splide__arrow--next': {
             right: 0,
+            '&:hover>svg': {
+              transform: 'scale(2)',
+            },
           },
           '.splide__arrow--prev': {
             left: 0,
+            transfom: 'scale(-1)',
             '&:hover>svg': {
               transform: 'scale(-2)',
             },
@@ -56,7 +60,6 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
             fill: '#f2f2f2',
             transition:
               'opacity .2s ease-out,transform .2s ease-out,-webkit-transform .2s ease-out',
-            opacity: 0,
           },
         },
         ...(Array.isArray(sx) ? sx : [sx]),
