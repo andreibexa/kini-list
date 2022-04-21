@@ -1,13 +1,19 @@
-import { Rating, Typography } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
+import { Box, Rating, Typography } from '@mui/material';
 import { MovieListResult } from 'types/api/generic';
 
-type RatingSmallProps = {
-  voteAverage: MovieListResult['vote_average'];
+type Props = {
+  voteAverage: MovieListResult['vote_average'] | undefined;
+  sx?: SxProps<Theme>;
 };
 
-export default function MovieRating({ voteAverage }: RatingSmallProps) {
+export default function RatingLarge({ voteAverage, sx = [] }: Props) {
+  if (!voteAverage || voteAverage === 0) {
+    return null;
+  }
+
   return (
-    <>
+    <Box sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <Rating
         name="half-rating-read"
         defaultValue={0.7}
@@ -23,6 +29,10 @@ export default function MovieRating({ voteAverage }: RatingSmallProps) {
       <Typography component="span" variant="caption" color="textSecondary">
         /10
       </Typography>
-    </>
+    </Box>
   );
 }
+
+RatingLarge.defaultProps = {
+  sx: [],
+};

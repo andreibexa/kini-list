@@ -10,6 +10,7 @@ function Loader() {
         top: '50%',
         left: '50%',
         zIndex: 1000,
+        backround: 'transparent',
       }}
     >
       <CircularProgress size={100} sx={{ color: red[900] }} />

@@ -12,6 +12,7 @@ function BadgeStyled({ children }: PropsBadge) {
       sx={{
         background: '#000',
         height: '100%',
+        position: 'relative',
         '> .badge': {
           position: 'absolute',
           display: 'flex',

@@ -13,13 +13,14 @@ export default function SearchBar() {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const inputValue = event.target.value;
-    if (inputValue.length === 0) {
-      navigate('/home');
-      return;
-    }
 
     if (timeoutInput.current) {
       clearTimeout(timeoutInput.current);
+    }
+
+    if (inputValue.length === 0) {
+      navigate('/');
+      return;
     }
 
     timeoutInput.current = setTimeout(() => {

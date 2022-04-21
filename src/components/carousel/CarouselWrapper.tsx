@@ -1,6 +1,7 @@
 import React from 'react';
 import { SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import red from '@mui/material/colors/red';
 
 type PropsCarouselWrapper = {
   children: React.ReactNode;
@@ -28,7 +29,7 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
           },
           '.splide__slide[aria-hidden=true]:before': {
             position: 'absolute',
-            background: 'rgba(16, 16, 17, .5)',
+            background: 'rgba(16, 16, 17, .8)',
             content: '""',
             width: '100%',
             height: '100%',
@@ -36,27 +37,29 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
           },
           '.splide__arrow': {
             background: 'transparent',
-            width: '4vw',
             height: '100%',
-            '&:hover svg': {
-              opacity: 1,
+          },
+          '.splide__arrow--next': {
+            right: '-27px',
+            '&:hover>svg': {
               transform: 'scale(2)',
             },
           },
-          '.splide__arrow--next': {
-            right: 0,
-          },
           '.splide__arrow--prev': {
-            left: 0,
+            left: '-27px',
+            '&>svg': {
+              transform: 'scale(-1)',
+            },
             '&:hover>svg': {
               transform: 'scale(-2)',
             },
           },
           '.splide__arrow svg': {
-            fill: '#f2f2f2',
+            fill: red[900],
+            width: '1.4em',
+            height: '1.4em',
             transition:
               'opacity .2s ease-out,transform .2s ease-out,-webkit-transform .2s ease-out',
-            opacity: 0,
           },
         },
         ...(Array.isArray(sx) ? sx : [sx]),

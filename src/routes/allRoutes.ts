@@ -5,12 +5,14 @@ import SearchIcon from '@mui/icons-material/Movie';
 import LocalMoviesOutlinedIcon from '@mui/icons-material/LocalMoviesOutlined';
 import MovieIcon from '@mui/icons-material/Movie'; */
 import { lazy } from 'react';
-import { IPageLinks } from 'types/pageLinks';
+import { AllRoutes } from 'types/allRoutes';
+import ValidateMovieId from 'routes/validateMovieId';
+import ValidateTvShowId from 'routes/validateTvShowId';
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const SearchPage = lazy(() => import('pages/Search/SearchPage'));
 
-const pageLinks: IPageLinks[] = [
+const allRoutes: AllRoutes[] = [
   {
     element: HomePage,
     label: 'Home',
@@ -26,6 +28,16 @@ const pageLinks: IPageLinks[] = [
     index: false,
     path: '/search/:search',
     visible: false,
+  },
+  {
+    element: ValidateMovieId,
+    label: 'Movie',
+    path: '/movie/:title-:id',
+  },
+  {
+    element: ValidateTvShowId,
+    label: 'TV Series',
+    path: '/tv-series/:title-:id',
   },
   /* {
     label: 'Movies',
@@ -50,4 +62,4 @@ const pageLinks: IPageLinks[] = [
   }, */
 ];
 
-export default pageLinks;
+export default allRoutes;

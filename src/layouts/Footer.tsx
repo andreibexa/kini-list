@@ -1,18 +1,18 @@
-import { Box, Link, Typography } from '@mui/material';
+import { Container, Link, Typography } from '@mui/material';
 import logoTmdb from 'assets/img/logo-tmdb.svg';
 
 export default function Footer() {
   return (
-    <Box
+    <Container
       component="footer"
+      maxWidth="xl"
       sx={{
         height: '2rem',
-        py: '2rem',
+        py: '4rem',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        px: '4vw',
       }}
     >
       <Typography>
@@ -37,6 +37,6 @@ export default function Footer() {
       >
         <img src={logoTmdb} loading="lazy" alt="The Movie Database" height="100%" />
       </Link>
-    </Box>
+    </Container>
   );
 }
