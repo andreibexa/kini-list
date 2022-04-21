@@ -11,12 +11,15 @@ function findCountry(countries: Countries, countryIso: string | undefined) {
 export default function useCountry() {
   const countries = useCountries();
   const [{ country: stateCountry }] = useStateValue();
+  let defaultCountry = null;
 
   const queryInfo = useQuery<string, Error>(['country'], () => getCountryByIp(), {
     enabled: !!countries,
   });
 
-  const defaultCountry = countries ? findCountry(countries, queryInfo.data) : null;
+  if (queryInfo.data && countries) {
+    defaultCountry = findCountry(countries, queryInfo.data);
+  }
 
   return {
     ...queryInfo,

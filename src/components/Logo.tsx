@@ -1,12 +1,14 @@
 import Videocam from '@mui/icons-material/Videocam';
 import Link from '@mui/material/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material/styles';
 
 export default function Logo() {
   return (
     <Link
-      href="/"
+      component={RouterLink}
+      to="/"
       color="inherit"
       underline="none"
       sx={{

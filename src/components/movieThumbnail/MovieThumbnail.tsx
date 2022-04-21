@@ -1,25 +1,31 @@
-import { Typography } from '@mui/material';
-import { MovieListResult } from 'types/api/generic';
+import slug from 'helpers/url';
+import { Typography, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import BadgeStyled from './BadgeStyled';
 import CardMediaStyled from './CardMediaStyled';
 
-interface PropsMovieThumbnail {
-  voteAverage: MovieListResult['vote_average'];
-  title: MovieListResult['title'];
-  posterPath: MovieListResult['poster_path'];
+interface Props {
+  id: number;
+  title: string;
+  posterPath: string | number | null;
+  voteAverage: number;
 }
 
-export default function MovieThumbnail({ voteAverage, title, posterPath }: PropsMovieThumbnail) {
+export default function MovieThumbnail({
+  id, title, posterPath, voteAverage,
+}: Props) {
   if (!posterPath) {
     return null;
   }
 
   return (
-    <BadgeStyled>
-      <Typography component="span" variant="h6" className="badge">
-        {voteAverage}
-      </Typography>
-      <CardMediaStyled title={title} posterPath={posterPath} />
-    </BadgeStyled>
+    <Link component={RouterLink} to={`/movie/${slug(title)}-${id}`} title={title}>
+      <BadgeStyled>
+        <Typography component="span" variant="h6" className="badge">
+          {voteAverage || ''}
+        </Typography>
+        <CardMediaStyled title={title} posterPath={posterPath} />
+      </BadgeStyled>
+    </Link>
   );
 }

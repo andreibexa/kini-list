@@ -20,7 +20,7 @@ export default function useMovieGenres() {
   }));
 
   const queryResults = useQueries({ queries });
-  const isLoadingMovieGenres = queryResults.find((query) => query.isLoading);
+  const isLoadingMovieGenres = !!queryResults.find((query) => query.isLoading);
   const movieGenres = !isLoadingMovieGenres
     ? (queryResults.map((query) => query.data) as Movies[])
     : undefined;

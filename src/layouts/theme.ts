@@ -35,6 +35,8 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"Oswald", "Helvetica", "Arial", "sans-serif"',
+    body1: { fontWeight: 300 },
+    body2: { fontWeight: 300 },
     button: {
       textTransform: 'none',
       '&:hover': {

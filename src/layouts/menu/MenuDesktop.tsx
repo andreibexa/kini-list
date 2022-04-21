@@ -1,13 +1,13 @@
-import { Box, Button } from '@mui/material';
-import { IPageLinks } from 'types/pageLinks';
+import { Box, Button, Container } from '@mui/material';
+import { AllRoutes } from 'types/allRoutes';
 import Logo from 'components/Logo';
 import SearchInput from 'components/search/SearchInput';
-import pageLinks from 'routes/pageLinks';
+import allRoutes from 'routes/allRoutes';
 import ProvidersWrapper from 'components/providers/ProvidersWrapper';
 import theme from 'layouts/theme';
 
-const buttons = pageLinks.map(
-  (item: IPageLinks) => item.visible && (
+const buttons = allRoutes.map(
+  (item: AllRoutes) => item.visible && (
   <Button
     href={item.path}
     key={item.label}
@@ -21,7 +21,8 @@ const buttons = pageLinks.map(
 
 function MenuDesktop() {
   return (
-    <Box
+    <Container
+      maxWidth="xl"
       sx={{
         width: '100%',
         display: 'flex',
@@ -35,7 +36,7 @@ function MenuDesktop() {
       <Box>{buttons}</Box>
       <SearchInput />
       <ProvidersWrapper />
-    </Box>
+    </Container>
   );
 }
 

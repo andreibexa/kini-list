@@ -20,8 +20,6 @@ export default function Header() {
 
   const SxAppBar = {
     transition: 'background .5s',
-    pl: '4vw',
-    pr: '4vw',
     background: '#000000',
     ...(!scrollTrigger && {
       boxShadow: 'none',

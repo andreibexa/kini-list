@@ -12,8 +12,10 @@
     "build:ui": "npm run prettier-format && npm run lint:fix && npm run build",
     "tsc": "tsc",
     "lint": "eslint './src/**/*.{ts,tsx}' --cache --config .eslintrc.js",
+    "lint-staged": "npm run prettier-format && npm run lint:fix",
     "lint:fix": "eslint  './src/**/*.{ts,tsx}' --cache --fix --config .eslintrc.js",
-    "prettier-format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'"
+    "prettier-format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -28,9 +30,11 @@
     "react-dom": "^18.0.0",
     "react-error-boundary": "^3.1.4",
     "react-hot-toast": "^2.2.0",
-    "react-query": "^4.0.0-beta.2",
+    "react-player": "^2.10.0",
+    "react-query": "^4.0.0-beta.3",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.1.4",
@@ -59,6 +63,8 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "gh-pages": "^3.2.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.8",
     "prettier": "^2.6.2",
     "react-app-rewired": "^2.2.1",
     "speed-measure-webpack-plugin": "^1.5.0",

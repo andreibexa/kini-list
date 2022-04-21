@@ -5,9 +5,9 @@ import {
 import { useState } from 'react';
 import Logo from 'components/Logo';
 import Search from 'components/search/SearchInput';
-import pageLinks from 'routes/pageLinks';
+import allRoutes from 'routes/allRoutes';
 
-const listItems = pageLinks.map((item) => (
+const listItems = allRoutes.map((item) => (
   <ListItem button component="a" href={item.path} key={item.label}>
     <ListItemIcon>{item.icon}</ListItemIcon>
     <ListItemText primary={item.label} />
