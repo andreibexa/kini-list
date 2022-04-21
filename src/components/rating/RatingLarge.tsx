@@ -3,12 +3,12 @@ import { Box, Rating, Typography } from '@mui/material';
 import { MovieListResult } from 'types/api/generic';
 
 type Props = {
-  voteAverage: MovieListResult['vote_average'];
+  voteAverage: MovieListResult['vote_average'] | undefined;
   sx?: SxProps<Theme>;
 };
 
 export default function RatingLarge({ voteAverage, sx = [] }: Props) {
-  if (voteAverage === 0) {
+  if (!voteAverage || voteAverage === 0) {
     return null;
   }
 

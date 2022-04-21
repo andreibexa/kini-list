@@ -1,5 +1,5 @@
 import { MultiMediaType } from 'types/api/generic';
-import SlideContent from './MovieThumbnail';
+import MovieThumbnail from './MovieThumbnail';
 
 interface Props {
   movie: MultiMediaType;
@@ -22,11 +22,12 @@ export default function MediaType({ movie }: Props) {
   }
 
   return (
-    <SlideContent
+    <MovieThumbnail
       id={movie.id}
       title={title}
       posterPath={movie.poster_path}
       voteAverage={movie.vote_average}
+      mediaType={movie.media_type}
     />
   );
 }

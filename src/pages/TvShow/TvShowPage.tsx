@@ -1,14 +1,14 @@
 import LoaderEffect from 'components/LoaderEffect';
-import useMovieDetails from 'hooks/useMovieDetails';
+import useTvShowDetails from 'hooks/useTvShowDetails';
 import { useNavigate } from 'react-router-dom';
-import MovieContent from './MovieContent';
+import TvShowContent from './TvShowContent';
 
 interface Props {
-  movieId: number;
+  showId: number;
 }
-export default function MoviePage({ movieId }: Props) {
+export default function TvShowPage({ showId }: Props) {
   const navigate = useNavigate();
-  const { data: movie, isLoading, isError } = useMovieDetails(movieId);
+  const { data: show, isLoading, isError } = useTvShowDetails(showId);
 
   if (isError) {
     navigate('/404');
@@ -17,7 +17,7 @@ export default function MoviePage({ movieId }: Props) {
 
   return (
     <LoaderEffect isLoading={isLoading}>
-      <MovieContent movie={movie} />
+      <TvShowContent show={show} />
     </LoaderEffect>
   );
 }

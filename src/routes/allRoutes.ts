@@ -7,6 +7,7 @@ import MovieIcon from '@mui/icons-material/Movie'; */
 import { lazy } from 'react';
 import { AllRoutes } from 'types/allRoutes';
 import ValidateMovieId from 'routes/validateMovieId';
+import ValidateTvShowId from 'routes/validateTvShowId';
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const SearchPage = lazy(() => import('pages/Search/SearchPage'));
@@ -32,6 +33,11 @@ const allRoutes: AllRoutes[] = [
     element: ValidateMovieId,
     label: 'Movie',
     path: '/movie/:title-:id',
+  },
+  {
+    element: ValidateTvShowId,
+    label: 'TV Series',
+    path: '/tv-series/:title-:id',
   },
   /* {
     label: 'Movies',

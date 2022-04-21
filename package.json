@@ -7,14 +7,14 @@
   "author": "Andrei Bexa",
   "license": "",
   "scripts": {
-    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "npm run build",
-    "build:ui": "npm run prettier-format && npm run lint:fix && npm run build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "serve": "serve -s build",
     "tsc": "tsc",
     "lint": "eslint './src/**/*.{ts,tsx}' --cache --config .eslintrc.js",
-    "lint-staged": "npm run prettier-format && npm run lint:fix",
     "lint:fix": "eslint  './src/**/*.{ts,tsx}' --cache --fix --config .eslintrc.js",
-    "prettier-format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "lint-staged": "npm run prettier-format",
+    "prettier-format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' && npm run lint:fix",
     "prepare": "husky install"
   },
   "dependencies": {

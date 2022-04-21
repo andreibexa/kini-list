@@ -17,6 +17,6 @@ export default function VideoItem({ video }: Props) {
     case 'Vimeo':
       return <VimeoVideo id={video.key} />;
     default:
-      throw new Error(`Unhandled video type \r\n: ${JSON.stringify(video)}`);
+      throw new Error(`Unhandled video type \r\n: ${JSON.stringify(video.site)}`);
   }
 }

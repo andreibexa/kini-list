@@ -2,7 +2,7 @@
 import '@splidejs/splide/dist/css/splide.min.css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { MovieListResult } from 'types/api/generic';
-import SlideContent from 'components/movieThumbnail/MovieThumbnail';
+import MovieThumbnail from 'components/movieThumbnail/MovieThumbnail';
 
 const options = {
   perPage: 6,
@@ -53,11 +53,12 @@ export default function CarouselSplide({ movies }: Props) {
     >
       {movies.map((movie) => (
         <SplideSlide key={movie.id}>
-          <SlideContent
+          <MovieThumbnail
             voteAverage={movie.vote_average}
             title={movie.title}
             posterPath={movie.poster_path || movie.backdrop_path}
             id={movie.id}
+            mediaType="movie"
           />
         </SplideSlide>
       ))}

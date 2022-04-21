@@ -2,23 +2,23 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import VideoItem from 'components/video/VideoItem';
-import { MovieWithVideos } from 'types/api/movies';
+import { ShowWithVideos } from 'types/api/tv';
 import defaultbBackdropPath from 'assets/img/default-backdrop.jpg';
 
 interface Props {
-  movie: MovieWithVideos | undefined;
+  show: ShowWithVideos | undefined;
 }
 
-export default function MovieMediaContainer({ movie }: Props) {
-  if (!movie) {
+export default function TvShowMediaContainer({ show }: Props) {
+  if (!show) {
     return null;
   }
 
-  const firstTrailer = movie.videos?.results.find(
+  const firstTrailer = show.videos?.results.find(
     (video) => video.type === 'Trailer' || video.type === 'Clip' || video.type === 'Teaser',
   );
 
-  const backdropPath = movie.backdrop_path;
+  const backdropPath = show.backdrop_path;
   const backdropUrl = backdropPath
     ? `${THE_MOVIE_DB_BASE_URL}w1280/${backdropPath}`
     : defaultbBackdropPath;
@@ -57,7 +57,7 @@ export default function MovieMediaContainer({ movie }: Props) {
         && (
           <>
             <Box className="overlay" />
-            <img src={backdropUrl} className="backdrop" alt={movie.original_title} />
+            <img src={backdropUrl} className="backdrop" alt={show.name} />
           </>
         )
       }

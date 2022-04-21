@@ -1,27 +1,27 @@
 import React, { useEffect } from 'react';
-
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import { Avatar, AvatarGroup } from '@mui/material';
-import useMovieProviders from 'hooks/useMovieProviders';
 import { useStateValue } from 'state/state';
 import { Provider } from 'types/api/watch';
+import useMediaProviders from 'hooks/useMediaProviders';
 
 interface Props {
-  movieId: number;
+  mediaId: number;
+  type: 'movie' | 'tv'
 }
 
-export default function MovieProviders({ movieId }: Props) {
+export default function IconProviders({ mediaId, type }: Props) {
   const [{ country }] = useStateValue();
-  const { movieProviders } = useMovieProviders(movieId);
+  const { mediaProviders } = useMediaProviders(mediaId, type);
   const [providers, setProviders] = React.useState<Provider[] | undefined>();
 
   useEffect(() => {
-    if (movieProviders && country) {
-      const countryProviders = movieProviders[country.iso_3166_1];
+    if (mediaProviders && country) {
+      const countryProviders = mediaProviders[country.iso_3166_1];
       const flatProviders = countryProviders?.flatrate;
       setProviders(flatProviders);
     }
-  }, [country, movieProviders]);
+  }, [country, mediaProviders]);
 
   if (!providers) {
     return null;

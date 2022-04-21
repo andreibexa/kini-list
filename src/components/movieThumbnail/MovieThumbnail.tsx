@@ -9,17 +9,20 @@ interface Props {
   title: string;
   posterPath: string | number | null;
   voteAverage: number;
+  mediaType: string;
 }
 
 export default function MovieThumbnail({
-  id, title, posterPath, voteAverage,
+  id, title, posterPath, voteAverage, mediaType,
 }: Props) {
   if (!posterPath) {
     return null;
   }
 
+  const mediaBaseUrl = mediaType === 'movie' ? 'movie' : 'tv-series';
+
   return (
-    <Link component={RouterLink} to={`/movie/${slug(title)}-${id}`} title={title}>
+    <Link component={RouterLink} to={`/${mediaBaseUrl}/${slug(title)}-${id}`} title={title}>
       <BadgeStyled>
         <Typography component="span" variant="h6" className="badge">
           {voteAverage || ''}

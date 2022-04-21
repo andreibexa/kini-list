@@ -4,7 +4,7 @@ import theme from 'layouts/theme';
 import { MovieListResult } from 'types/api/generic';
 import RatingLarge from 'components/rating/RatingLarge';
 import useGenres from 'hooks/useGenres';
-import MovieProviders from 'components/MovieProviders';
+import IconProviders from 'components/IconProviders';
 
 type PropsBox = {
   children: React.ReactNode;
@@ -99,7 +99,7 @@ export default function HeroContent({ movie }: Props) {
           }}
         >
           {/* Movie providers */}
-          <MovieProviders movieId={movie.id} />
+          <IconProviders type="movie" mediaId={movie.id} />
         </Box>
       </Box>
     </BoxContainer>

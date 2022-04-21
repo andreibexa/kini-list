@@ -10,9 +10,9 @@ const getMovieProviders = async <T>(movie_id: number, signal: AbortSignal | unde
   }
 };
 
-const getMovieDetails = async <T>(movie_id: number) => {
+const getMovieDetails = async <T>(movieId: number) => {
   try {
-    const { data } = await apiClientV3.get<T>(`/movie/${movie_id}?append_to_response=videos`);
+    const { data } = await apiClientV3.get<T>(`/movie/${movieId}?append_to_response=videos`);
 
     return data;
   } catch {
