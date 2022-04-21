@@ -9,7 +9,11 @@ const useMovieDetails = (id: number) => {
     throw new Error('Error! Movie id must be a number.');
   }
 
-  return useQuery<MovieWithVideos, Error>(['movie', String(movieId)], () => getMovieDetails(movieId), {});
+  return useQuery<MovieWithVideos, Error>(
+    ['movie', String(movieId)],
+    () => getMovieDetails(movieId),
+    {},
+  );
 };
 
 export default useMovieDetails;

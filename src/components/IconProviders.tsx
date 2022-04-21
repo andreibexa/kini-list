@@ -7,7 +7,7 @@ import useMediaProviders from 'hooks/useMediaProviders';
 
 interface Props {
   mediaId: number;
-  type: 'movie' | 'tv'
+  type: 'movie' | 'tv';
 }
 
 export default function IconProviders({ mediaId, type }: Props) {

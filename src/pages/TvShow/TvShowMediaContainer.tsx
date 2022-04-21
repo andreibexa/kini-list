@@ -52,15 +52,12 @@ export default function TvShowMediaContainer({ show }: Props) {
       <Box className="react-player-wrapper">
         <VideoItem video={firstTrailer} />
       </Box>
-      {
-        !firstTrailer
-        && (
-          <>
-            <Box className="overlay" />
-            <img src={backdropUrl} className="backdrop" alt={show.name} />
-          </>
-        )
-      }
+      {!firstTrailer && (
+        <>
+          <Box className="overlay" />
+          <img src={backdropUrl} className="backdrop" alt={show.name} />
+        </>
+      )}
     </Paper>
   );
 }

@@ -52,15 +52,12 @@ export default function MovieMediaContainer({ movie }: Props) {
       <Box className="react-player-wrapper">
         <VideoItem video={firstTrailer} />
       </Box>
-      {
-        !firstTrailer
-        && (
-          <>
-            <Box className="overlay" />
-            <img src={backdropUrl} className="backdrop" alt={movie.original_title} />
-          </>
-        )
-      }
+      {!firstTrailer && (
+        <>
+          <Box className="overlay" />
+          <img src={backdropUrl} className="backdrop" alt={movie.original_title} />
+        </>
+      )}
     </Paper>
   );
 }

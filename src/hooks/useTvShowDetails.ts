@@ -9,7 +9,11 @@ const useTvShowDetails = (id: number) => {
     throw new Error('Error! Movie id must be a number.');
   }
 
-  return useQuery<ShowWithVideos, Error>(['movie', String(showId)], () => getTvShowDetails(showId), {});
+  return useQuery<ShowWithVideos, Error>(
+    ['movie', String(showId)],
+    () => getTvShowDetails(showId),
+    {},
+  );
 };
 
 export default useTvShowDetails;
