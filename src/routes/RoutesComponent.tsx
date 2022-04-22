@@ -3,14 +3,13 @@ import ScrollToTop from 'components/ScrollToTop';
 import useStoreState from 'hooks/useStoreState';
 import { Route, Routes } from 'react-router-dom';
 import Layout from 'layouts/Layout';
-import Loader from 'components/Loader';
 import pageLinks from './allRoutes';
 
 export default function RoutesComponent() {
   useStoreState();
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback="">
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<Layout />}>

@@ -1,5 +1,5 @@
-The Movie DB sample app using React and MUI.
+The Movie DB sample app using React.js, React Query and MUI.
 
 ## Try it
 
-[https://andreibexa.github.io/kini-list/](https://andreibexa.github.io/kini-list/)
+[https://kinilist.vercel.app](https://kinilist.vercel.app)

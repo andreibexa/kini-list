@@ -1,5 +1,6 @@
 import { Box, Button, Container } from '@mui/material';
 import { AllRoutes } from 'types/allRoutes';
+import { Link as RouterLink } from 'react-router-dom';
 import Logo from 'components/Logo';
 import SearchInput from 'components/search/SearchInput';
 import allRoutes from 'routes/allRoutes';
@@ -9,7 +10,8 @@ import theme from 'layouts/theme';
 const buttons = allRoutes.map(
   (item: AllRoutes) => item.visible && (
   <Button
-    href={item.path}
+    component={RouterLink}
+    to={item.path}
     key={item.label}
     color="secondary"
     sx={{ height: theme.spacing(12) }}
