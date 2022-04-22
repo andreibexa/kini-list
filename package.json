@@ -1,6 +1,7 @@
 {
   "name": "kini-list",
   "version": "1.0.0",
+  "homepage": "https://kinilist.vercel.app",
   "private": true,
   "description": "A list with movie trailers. Includes a filter for Provider and Country",
   "main": "index.js",
@@ -25,7 +26,6 @@
     "@splidejs/react-splide": "^0.7.4",
     "axios": "^0.26.1",
     "localforage": "^1.10.0",
-    "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-error-boundary": "^3.1.4",
@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.1.4",
-    "@types/lodash": "^4.14.181",
     "@types/node": "^17.0.23",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",

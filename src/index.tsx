@@ -6,7 +6,7 @@ import App from './App';
 
 localForage.config({
   driver: [localForage.INDEXEDDB, localForage.LOCALSTORAGE, localForage.WEBSQL],
-  name: 'myApp', // These fields
+  name: 'kini-list', // These fields
   version: 1.0, // are totally optional
 });
 

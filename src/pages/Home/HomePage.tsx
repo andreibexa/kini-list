@@ -5,7 +5,6 @@ import React, { useLayoutEffect } from 'react';
 import { MovieListResult } from 'types/api/generic';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import useMovieGenres from 'hooks/useMovieGenres';
-import Loader from 'components/Loader';
 import LoaderEffect from 'components/LoaderEffect';
 import Hero from './components/Hero';
 import MovieList from './components/MovieList';
@@ -45,10 +44,6 @@ function HomePage() {
         </Alert>
       </CenteredContent>
     );
-  }
-
-  if (!heroMovie) {
-    return <Loader />;
   }
 
   const isLoading = isLoadingMoviesTop || isLoadingMovieGenres;
