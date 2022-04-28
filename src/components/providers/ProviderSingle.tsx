@@ -1,4 +1,5 @@
 import React from 'react';
+import { queryClient } from 'App';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import { Provider } from 'types/api/watch';
@@ -31,25 +32,23 @@ export default function ProviderSingle({ provider }: Props) {
   const [{ favoriteProviders }, dispatch] = useStateValue();
   const isActive = Boolean(findFavoriteProvider(favoriteProviders, provider.provider_id));
 
-  const badgeContent = React.useCallback(
-    () => (isActive ? activeBadgeIcon : inactiveBadgeIcon),
-    [isActive],
-  );
+  const badgeContent = isActive ? activeBadgeIcon : inactiveBadgeIcon;
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = () => {
     dispatch(toggleFavoriteProvider(provider, favoriteProviders));
-  }, [dispatch, favoriteProviders, provider]);
+    queryClient.resetQueries({ queryKey: ['moviesTop'] }).catch(() => {});
+    queryClient.resetQueries({ queryKey: ['allGenresMovies'] }).catch(() => {});
+  };
 
   return (
     <ImageListItemStyled isActive={isActive}>
       <ButtonBase onClick={handleClick} disableRipple>
-        <BadgeStyled badgeContent={badgeContent()}>
+        <BadgeStyled badgeContent={badgeContent}>
           <img
             src={`${THE_MOVIE_DB_BASE_URL}w92${provider.logo_path}`}
             alt={provider.provider_name}
             width="95%"
             height="95%"
-            loading="lazy"
           />
         </BadgeStyled>
       </ButtonBase>

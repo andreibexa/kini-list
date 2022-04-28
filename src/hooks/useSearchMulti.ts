@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import searchMulti from 'services/searchService';
-import { useStateValue } from 'state/state';
 import { MultiMediaTypeResults } from 'types/api/generic';
+import useCountry from './useCountry';
 
 export default function useSearchMulti(query: string) {
-  const [{ country }] = useStateValue();
+  const { country } = useCountry();
   const countryIso = country?.iso_3166_1;
 
   return useQuery<MultiMediaTypeResults, Error>(

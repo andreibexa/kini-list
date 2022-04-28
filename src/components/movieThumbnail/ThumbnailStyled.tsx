@@ -6,26 +6,26 @@ type PropsBadge = BadgeProps & {
   children: React.ReactNode;
 };
 
-function BadgeStyled({ children }: PropsBadge) {
+function ThumbnailStyled({ children }: PropsBadge) {
   return (
     <Box
       sx={{
         background: '#000',
-        height: '100%',
         position: 'relative',
+        objectFit: 'cover',
+        width: '100%',
+        height: '100%',
         '> .badge': {
           position: 'absolute',
-          display: 'flex',
-          justifyContent: 'center',
+          textAlign: 'center',
           fontWeight: 'normal',
-          alignItems: 'center',
           width: '3.5rem',
           height: '3.5rem',
+          lineHeight: '3.5rem',
           top: 0,
           right: 0,
           background: 'rgba(0,0,0,.8)',
           color: 'rgba(245, 197, 24)',
-          borderRadius: 0,
         },
         '> .splide__spinner': {
           borderColor: red[900],
@@ -40,4 +40,4 @@ function BadgeStyled({ children }: PropsBadge) {
   );
 }
 
-export default BadgeStyled;
+export default ThumbnailStyled;

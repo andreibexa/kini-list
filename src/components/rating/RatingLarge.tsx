@@ -13,7 +13,12 @@ export default function RatingLarge({ voteAverage, sx = [] }: Props) {
   }
 
   return (
-    <Box sx={[...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box
+      sx={[
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <Rating
         name="half-rating-read"
         defaultValue={0.7}

@@ -62,6 +62,7 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
               'opacity .2s ease-out,transform .2s ease-out,-webkit-transform .2s ease-out',
           },
         },
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

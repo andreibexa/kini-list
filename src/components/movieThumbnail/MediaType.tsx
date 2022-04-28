@@ -1,19 +1,26 @@
 import { MultiMediaType } from 'types/api/generic';
-import MovieThumbnail from './MovieThumbnail';
+import { Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+import slug from 'helpers/url';
+import ThumbnailWrapper from './ThumbnailWrapper';
+import ImgThumbnail from './ImgThumbnail';
 
 interface Props {
   movie: MultiMediaType;
 }
 
 export default function MediaType({ movie }: Props) {
-  let title = '';
+  let title = null;
+  let baseSlug = null;
 
   switch (movie.media_type) {
     case 'movie':
       title = movie.title || movie.original_title;
+      baseSlug = 'movie';
       break;
     case 'tv':
       title = movie.name || movie.original_name;
+      baseSlug = 'tv-series';
       break;
     case 'person':
       return null;
@@ -22,12 +29,13 @@ export default function MediaType({ movie }: Props) {
   }
 
   return (
-    <MovieThumbnail
-      id={movie.id}
-      title={title}
-      posterPath={movie.poster_path}
-      voteAverage={movie.vote_average}
-      mediaType={movie.media_type}
-    />
+    <Link component={RouterLink} to={`/${baseSlug}/${slug(title)}-${movie.id}`} title={title}>
+      <ThumbnailWrapper
+        voteAverage={movie.vote_average}
+        imgComponent={
+          <ImgThumbnail title={title} posterPath={movie.poster_path || movie.backdrop_path} />
+        }
+      />
+    </Link>
   );
 }

@@ -4,17 +4,22 @@ import { QueriesOptions, useQueries } from 'react-query';
 import { Movies } from 'types/api/movies';
 import useProviders from './useProviders';
 import useGenres from './useGenres';
+import useCountry from './useCountry';
 
 export default function useMovieGenres() {
-  const [{ favoriteProviders, country }] = useStateValue();
+  const [{ favoriteProviders }] = useStateValue();
+  const { country } = useCountry();
   const { genres } = useGenres();
 
   const { providers } = useProviders();
   const countryIso = country?.iso_3166_1;
+  const favoriteProvidersHash = favoriteProviders
+    ?.map((provider) => provider.provider_id)
+    .join('|');
 
   const queries: QueriesOptions<Movies[]> = [];
   genres?.forEach((genre) => queries.push({
-    queryKey: ['allGenresMovies', countryIso, ...favoriteProviders, genre.name],
+    queryKey: ['allGenresMovies', { countryIso, favoriteProvidersHash, genre }],
     queryFn: () => getDiscoverMovie(countryIso, favoriteProviders, genre.id),
     enabled: !!countryIso && !!providers && !!genres,
   }));

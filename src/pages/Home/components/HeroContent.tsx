@@ -5,6 +5,7 @@ import { MovieListResult } from 'types/api/generic';
 import RatingLarge from 'components/rating/RatingLarge';
 import useGenres from 'hooks/useGenres';
 import IconProviders from 'components/IconProviders';
+import useMediaProviders from 'hooks/useMediaProviders';
 
 type PropsBox = {
   children: React.ReactNode;
@@ -40,8 +41,9 @@ export default function HeroContent({ movie }: Props) {
   const currentGenres = genres?.filter((genre) => movie.genre_ids.find((id) => id === genre.id));
   const releaseDate = new Date(movie.release_date);
   const releaseYear = releaseDate.getFullYear() || 'N/A';
+  const { mediaProviders } = useMediaProviders(movie.id, 'movie');
 
-  if (!genres) {
+  if (!genres || !mediaProviders) {
     return null;
   }
 

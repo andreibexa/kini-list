@@ -6,19 +6,20 @@ import { Country } from 'types/api/configuration';
 import { useStateValue } from 'state/state';
 import useCountries from 'hooks/useCountries';
 import { setCountry } from 'state/reducer';
+import useCountry from 'hooks/useCountry';
 
 function CountrySelect() {
-  const [{ country }, dispatch] = useStateValue();
   const countries = useCountries();
+  const { country } = useCountry();
+  const [, dispatch] = useStateValue();
 
-  const handleChange = React.useCallback(
-    (selected: Country | null) => {
-      if (selected) {
+  const handleChange = (selected: Country | null) => {
+    if (selected) {
+      React.startTransition(() => {
         dispatch(setCountry(selected));
-      }
-    },
-    [dispatch],
-  );
+      });
+    }
+  };
 
   if (!countries) {
     return null;

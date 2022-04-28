@@ -3,22 +3,41 @@ import red from '@mui/material/colors/red';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { MovieListResult } from 'types/api/generic';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import slug from 'helpers/url';
-import { MovieListResult } from 'types/api/generic';
+import useMoviesTop from 'hooks/useMoviesTop';
 import HeroContent from './HeroContent';
 
-interface Props {
-  movie: MovieListResult | undefined;
+function findFirstMovie(moviesTop: MovieListResult[] | undefined) {
+  return moviesTop?.find((movie) => !!movie.backdrop_path);
 }
 
-export default function Hero({ movie }: Props) {
-  if (!movie || !movie.backdrop_path) {
+const img = new Image();
+export default function Hero() {
+  const { moviesTop } = useMoviesTop();
+  const [heroMovie, setHeroMovie] = React.useState<MovieListResult | undefined>();
+
+  useEffect(() => {
+    const firstMovie = findFirstMovie(moviesTop);
+    if (firstMovie) {
+      img.src = `${THE_MOVIE_DB_BASE_URL}w1280/${
+        firstMovie.backdrop_path || 'assets/img/default-backdrop.jpg'
+      }`;
+
+      img.onload = () => {
+        setHeroMovie(firstMovie);
+      };
+    }
+  }, [moviesTop]);
+
+  if (!heroMovie || !heroMovie.backdrop_path) {
     return null;
   }
 
-  const slugTitle = slug(movie.title);
-  const backgroundUrl = `${THE_MOVIE_DB_BASE_URL}w1280/${movie.backdrop_path}`;
+  const slugTitle = slug(heroMovie.title);
+  const backgroundUrl = `${THE_MOVIE_DB_BASE_URL}w1280/${heroMovie.backdrop_path}`;
   const sxHeroUnit = {
     background: `url(${backgroundUrl}) no-repeat`,
     backgroundSize: 'cover',
@@ -45,8 +64,8 @@ export default function Hero({ movie }: Props) {
       <Container maxWidth="xl">
         <Link
           component={RouterLink}
-          to={`/movie/${slugTitle}-${movie.id}`}
-          title={movie.title}
+          to={`/movie/${slugTitle}-${heroMovie.id}`}
+          title={heroMovie.title}
           underline="none"
           sx={{
             '&:hover .MuiButton-root': {
@@ -55,7 +74,7 @@ export default function Hero({ movie }: Props) {
             },
           }}
         >
-          <HeroContent movie={movie} />
+          <HeroContent movie={heroMovie} />
         </Link>
       </Container>
     </Box>

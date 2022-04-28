@@ -3,6 +3,7 @@ import Carousel from 'components/carousel/Carousel';
 import { Container } from '@mui/material';
 import useMoviesTop from 'hooks/useMoviesTop';
 import useMovieGenres from 'hooks/useMovieGenres';
+import RenderIfVisible from 'react-render-if-visible';
 
 export default function MovieList() {
   const { moviesTop } = useMoviesTop();
@@ -15,10 +16,13 @@ export default function MovieList() {
 
   return (
     <Container maxWidth="xl" sx={{ mt: '-25vh' }}>
-      <Carousel movies={moviesTop} title="Trending Now" />
+      <RenderIfVisible defaultHeight={400}>
+        <Carousel movies={moviesTop} title="Trending Now" />
+      </RenderIfVisible>
       {movieGenres.map((movies, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Carousel movies={movies.results} key={index} title={genres[index].name} />
+        <RenderIfVisible defaultHeight={400} key={genres[index].name}>
+          <Carousel movies={movies.results} title={genres[index].name} />
+        </RenderIfVisible>
       ))}
     </Container>
   );

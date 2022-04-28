@@ -10,6 +10,7 @@ import theme from './layouts/theme';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      suspense: true,
       refetchOnWindowFocus: false,
       useErrorBoundary: true,
       retry: process.env.NODE_ENV === 'development' ? 1 : 3,

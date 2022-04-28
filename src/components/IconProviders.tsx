@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import { Avatar, AvatarGroup } from '@mui/material';
-import { useStateValue } from 'state/state';
 import { Provider } from 'types/api/watch';
 import useMediaProviders from 'hooks/useMediaProviders';
+import useCountry from 'hooks/useCountry';
 
 interface Props {
   mediaId: number;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function IconProviders({ mediaId, type }: Props) {
-  const [{ country }] = useStateValue();
+  const { country } = useCountry();
   const { mediaProviders } = useMediaProviders(mediaId, type);
   const [providers, setProviders] = React.useState<Provider[] | undefined>();
 

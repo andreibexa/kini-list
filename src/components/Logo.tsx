@@ -1,10 +1,11 @@
+import React from 'react';
 import Videocam from '@mui/icons-material/Videocam';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material/styles';
 
-export default function Logo() {
+function Logo() {
   return (
     <Link
       component={RouterLink}
@@ -35,3 +36,5 @@ export default function Logo() {
     </Link>
   );
 }
+
+export default React.memo(Logo);

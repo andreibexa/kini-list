@@ -1,6 +1,5 @@
 import { MovieListResult } from 'types/api/generic';
 import CarouselSplide from './CarouselSplide';
-import CarouselTitle from './CarouselTitle';
 import CarouselWrapper from './CarouselWrapper';
 
 type Props = {
@@ -15,8 +14,7 @@ export default function Carousel({ movies, title }: Props) {
 
   return (
     <CarouselWrapper>
-      <CarouselTitle title={title} />
-      <CarouselSplide movies={movies} />
+      <CarouselSplide movies={movies} carouselTitle={title} />
     </CarouselWrapper>
   );
 }

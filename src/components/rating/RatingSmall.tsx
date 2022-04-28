@@ -15,7 +15,12 @@ export default function RatingSmall({ voteAverage, sx = [] }: Props) {
   }
 
   return (
-    <Box sx={[...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box
+      sx={[
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <StarIcon fontSize="small" sx={{ color: '#faaf00', verticalAlign: 'sub', pb: 0.25 }} />
       <Typography component="span">{voteAverage}</Typography>
       <Typography component="span" variant="caption" color="textSecondary">

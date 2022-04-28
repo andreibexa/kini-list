@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 
 interface Props {
-  title: string;
+  carouselTitle: string;
 }
 
-export default function CarouselTitle({ title }: Props) {
+export default function CarouselTitle({ carouselTitle }: Props) {
   return (
     <Typography
       component="h6"
@@ -15,7 +15,7 @@ export default function CarouselTitle({ title }: Props) {
         letterSpacing: '.06em',
       }}
     >
-      {title}
+      {carouselTitle}
     </Typography>
   );
 }

@@ -2,11 +2,9 @@ import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box, Modal } from '@mui/material';
 import { useStateValue } from 'state/state';
-import { setCountry } from 'state/reducer';
-import useCountry from 'hooks/useCountry';
 import { filterActiveProviders } from 'utils/providers';
 import useProviders from 'hooks/useProviders';
 import theme from 'layouts/theme';
@@ -15,17 +13,10 @@ import CountrySelect from './CountrySelect';
 import ProvidersList from './ProvidersList';
 
 export default function ProvidersWrapper() {
-  const { country } = useCountry();
   const { providers } = useProviders();
-  const [{ favoriteProviders }, dispatch] = useStateValue();
+  const [{ favoriteProviders }] = useStateValue();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  useEffect(() => {
-    if (country) {
-      dispatch(setCountry(country));
-    }
-  }, [country, dispatch]);
 
   const activeProviders = filterActiveProviders(providers, favoriteProviders);
 

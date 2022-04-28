@@ -11,16 +11,18 @@ const useStoreState = () => {
   const initialRef = React.useRef(true);
 
   useEffect(() => {
-    const stateFromStorage = () => localForage.getItem('state').then((storedState) => {
-      if (storedState) {
-        dispatch(setState(storedState as State));
-      }
-      return !!storedState;
-    });
-
     if (initialRef.current) {
+      localForage
+        .getItem('state')
+        .then((storedState) => {
+          if (storedState) {
+            dispatch(setState(storedState as State));
+          }
+          return !!storedState;
+        })
+        .catch(() => {});
+
       // On first Load, get state from the browser storage - IndexedDB
-      stateFromStorage().catch(() => {});
       initialRef.current = false;
     }
 

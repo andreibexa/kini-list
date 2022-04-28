@@ -18,7 +18,7 @@ export default function SearchBar() {
     if (!pattern.test(location.pathname)) {
       searchInput.onReset();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {

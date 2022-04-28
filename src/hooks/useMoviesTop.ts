@@ -3,16 +3,20 @@ import { useStateValue } from 'state/state';
 import { useQuery } from 'react-query';
 import { Movies } from 'types/api/movies';
 import useProviders from './useProviders';
+import useCountry from './useCountry';
 
-export default function useMoviesTop(genreId?: number) {
-  const [{ favoriteProviders, country }] = useStateValue();
-
+export default function useMoviesTop() {
+  const [{ favoriteProviders }] = useStateValue();
+  const { country } = useCountry();
   const { providers } = useProviders();
   const countryIso = country?.iso_3166_1;
+  const favoriteProvidersHash = favoriteProviders
+    ?.map((provider) => provider.provider_id)
+    .join('|');
 
   const queryResults = useQuery<Movies, Error>(
-    ['trendingMovies', countryIso, ...favoriteProviders, String(genreId)],
-    () => getDiscoverMovie(countryIso, favoriteProviders, genreId),
+    ['moviesTop', { countryIso, favoriteProvidersHash }],
+    () => getDiscoverMovie(countryIso, favoriteProviders),
     { enabled: !!countryIso && !!providers },
   );
 

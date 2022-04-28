@@ -13,7 +13,13 @@ function Loader() {
         backround: 'transparent',
       }}
     >
-      <CircularProgress size={100} sx={{ color: red[900] }} />
+      <CircularProgress
+        size={100}
+        sx={{
+          color: red[900],
+        }}
+        disableShrink
+      />
     </Box>
   );
 }
