@@ -49,9 +49,9 @@ export default function MovieMediaContainer({ movie }: Props) {
         },
       }}
     >
-      <Box className="react-player-wrapper">
+      <Paper className="react-player-wrapper" sx={{ background: '#000' }}>
         <VideoItem video={firstTrailer} />
-      </Box>
+      </Paper>
       {!firstTrailer && (
         <>
           <Box className="overlay" />

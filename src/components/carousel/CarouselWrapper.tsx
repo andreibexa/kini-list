@@ -24,9 +24,6 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
           '&:first-of-type .is-active>span': {
             border: '2px solid #ffffff',
           },
-          '.is-active img': {
-            border: '5px solid #000000',
-          },
           '.splide__slide[aria-hidden=true]:before': {
             position: 'absolute',
             background: 'rgba(16, 16, 17, .8)',

@@ -39,6 +39,6 @@ export default function useCountry() {
 
   return {
     ...queryInfo,
-    country: refCountryByIp.current,
+    country: stateCountry || refCountryByIp.current,
   };
 }

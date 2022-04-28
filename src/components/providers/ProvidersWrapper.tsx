@@ -1,5 +1,4 @@
 import Menu from '@mui/material/Menu';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import React from 'react';
@@ -9,14 +8,20 @@ import { filterActiveProviders } from 'utils/providers';
 import useProviders from 'hooks/useProviders';
 import theme from 'layouts/theme';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
+import useCountry from 'hooks/useCountry';
 import CountrySelect from './CountrySelect';
 import ProvidersList from './ProvidersList';
 
 export default function ProvidersWrapper() {
+  const { country } = useCountry();
   const { providers } = useProviders();
   const [{ favoriteProviders }] = useStateValue();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  if (!country || !providers) {
+    return null;
+  }
 
   const activeProviders = filterActiveProviders(providers, favoriteProviders);
 
@@ -38,7 +43,7 @@ export default function ProvidersWrapper() {
         onClick={handleClick}
         sx={{
           height: theme.spacing(12),
-          '&>img': {
+          '&>.provider-logo': {
             width: '2.5rem',
             ml: 1,
           },
@@ -49,10 +54,16 @@ export default function ProvidersWrapper() {
             src={`${THE_MOVIE_DB_BASE_URL}w92${provider.logo_path}`}
             alt={`${provider.provider_name}`}
             key={provider.provider_id}
+            className="provider-logo"
           />
         ))}
         <FilterListIcon sx={{ ml: 2, mr: 2 }} />
-        <Typography>Filter</Typography>
+        <img
+          loading="lazy"
+          height="40"
+          src={`https://flagcdn.com/56x42/${country.iso_3166_1.toLowerCase()}.png`}
+          alt=""
+        />
       </Button>
       <Modal open={open} onClose={handleClose} keepMounted>
         <Menu
