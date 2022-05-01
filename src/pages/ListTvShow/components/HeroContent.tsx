@@ -1,9 +1,9 @@
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { Box, Button, Typography } from '@mui/material';
 import theme from 'layouts/theme';
-import { MovieListResult } from 'types/api/generic';
+import { TVListResult } from 'types/api/generic';
 import RatingLarge from 'components/rating/RatingLarge';
-import useGenresMovies from 'hooks/useGenresMovies';
+import useGenresTvShows from 'hooks/useGenresTvShows';
 import IconProviders from 'components/IconProviders';
 import useMediaProviders from 'hooks/useMediaProviders';
 
@@ -33,18 +33,18 @@ function BoxContainer({ children }: PropsBox) {
 }
 
 type Props = {
-  movie: MovieListResult;
+  show: TVListResult;
 };
 
-export default function HeroContent({ movie }: Props) {
-  const { genresMovies } = useGenresMovies();
-  const releaseDate = new Date(movie.release_date);
+export default function HeroContent({ show }: Props) {
+  const { genresTvShows } = useGenresTvShows();
+  const releaseDate = new Date(show.first_air_date);
   const releaseYear = releaseDate.getFullYear() || 'N/A';
-  const { mediaProviders } = useMediaProviders(movie.id, 'movie');
+  const { mediaProviders } = useMediaProviders(show.id, 'tv');
   // eslint-disable-next-line max-len
-  const currentGenres = genresMovies?.filter((genre) => movie.genre_ids.find((id) => id === genre.id));
+  const currentGenres = genresTvShows?.filter((genre) => show.genre_ids.find((id) => id === genre.id));
 
-  if (!genresMovies || !mediaProviders) {
+  if (!genresTvShows || !mediaProviders) {
     return null;
   }
 
@@ -53,12 +53,12 @@ export default function HeroContent({ movie }: Props) {
       <Box display="flex">
         {/* Title */}
         <Typography component="h5" variant="h5" align="left" color="textPrimary">
-          {movie.title}
+          {show.name}
         </Typography>
 
         {/* Rating */}
         <Box sx={{ ml: 2 }}>
-          <RatingLarge voteAverage={movie.vote_average} />
+          <RatingLarge voteAverage={show.vote_average} />
         </Box>
       </Box>
 
@@ -70,7 +70,7 @@ export default function HeroContent({ movie }: Props) {
       </Typography>
 
       {/* Description */}
-      <Typography sx={{ py: 8 }}>{movie.overview}</Typography>
+      <Typography sx={{ py: 8 }}>{show.overview}</Typography>
 
       {/* Play button */}
       <Box
@@ -101,8 +101,8 @@ export default function HeroContent({ movie }: Props) {
             textAlign: 'right',
           }}
         >
-          {/* Movie providers */}
-          <IconProviders type="movie" mediaId={movie.id} />
+          {/* TvShow providers */}
+          <IconProviders type="movie" mediaId={show.id} />
         </Box>
       </Box>
     </BoxContainer>

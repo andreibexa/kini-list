@@ -2,12 +2,12 @@ import {
   Alert, CircularProgress, ImageList, Typography,
 } from '@mui/material';
 import CenteredContent from 'components/CenteredContent';
-import useProviders from 'hooks/useProviders';
+import useMovieProviders from 'hooks/useMoviesProviders';
 import ProviderSingle from './ProviderSingle';
 
 export default function ProvidersList() {
-  const { providers, isSuccess } = useProviders();
-  const hasEntries = providers ? providers.length : false;
+  const { providersMovies, isSuccess } = useMovieProviders();
+  const hasEntries = providersMovies ? providersMovies.length : false;
 
   if (isSuccess && !hasEntries) {
     return (
@@ -17,7 +17,7 @@ export default function ProvidersList() {
     );
   }
 
-  if (!providers) {
+  if (!providersMovies) {
     return (
       <CenteredContent>
         <CircularProgress sx={{ mt: 2, mb: 2 }} />
@@ -41,7 +41,7 @@ export default function ProvidersList() {
         Streaming services
       </Typography>
       <ImageList cols={3} gap={10}>
-        {providers.map((provider) => (
+        {providersMovies.map((provider) => (
           <ProviderSingle provider={provider} key={provider.provider_id} />
         ))}
       </ImageList>

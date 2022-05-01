@@ -4,7 +4,7 @@ import { Provider } from './watch';
 import { Video } from './generic';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-export { Show } from 'themoviedb-typescript/build/src/interfaces/tv';
+export { Show, Shows } from 'themoviedb-typescript/build/src/interfaces/tv';
 
 export interface ShowProvider {
   link: string;

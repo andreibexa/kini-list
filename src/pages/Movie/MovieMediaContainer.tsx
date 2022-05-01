@@ -49,10 +49,11 @@ export default function MovieMediaContainer({ movie }: Props) {
         },
       }}
     >
-      <Paper className="react-player-wrapper" sx={{ background: '#000' }}>
-        <VideoItem video={firstTrailer} />
-      </Paper>
-      {!firstTrailer && (
+      {firstTrailer ? (
+        <Paper className="react-player-wrapper" sx={{ background: '#000' }}>
+          <VideoItem video={firstTrailer} />
+        </Paper>
+      ) : (
         <>
           <Box className="overlay" />
           <img src={backdropUrl} className="backdrop" alt={movie.original_title} />

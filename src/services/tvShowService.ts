@@ -1,12 +1,12 @@
 import { apiClientV3 } from 'utils/httpCommon';
 
-const getTvShowDetails = async <T>(showId: number) => {
+const getTvShowDetails = async <T>(movieId: number) => {
   try {
-    const { data } = await apiClientV3.get<T>(`/tv/${showId}?append_to_response=videos`);
+    const { data } = await apiClientV3.get<T>(`/tv/${movieId}?append_to_response=videos`);
 
     return data;
   } catch {
-    throw new Error('Error! Unable to fetch TV show details.');
+    throw new Error('Error! Unable to fetch tv show.');
   }
 };
 

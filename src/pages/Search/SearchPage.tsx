@@ -9,6 +9,7 @@ export default function SearchPage() {
   const params = useParams();
   const search = params?.search || '';
   const { data: movies, isLoading, refetch } = useSearchMulti(search);
+
   const headingText = movies?.total_results
     ? `Search results for: ${search}`
     : `Sorry, no movies found for your request: ${search}`;

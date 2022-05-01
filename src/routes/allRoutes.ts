@@ -10,6 +10,7 @@ import ValidateMovieId from 'routes/validateMovieId';
 import ValidateTvShowId from 'routes/validateTvShowId';
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
+const ListTvShowPage = lazy(() => import('pages/ListTvShow/ListTvShowPage'));
 const SearchPage = lazy(() => import('pages/Search/SearchPage'));
 
 const allRoutes: AllRoutes[] = [
@@ -19,6 +20,13 @@ const allRoutes: AllRoutes[] = [
     icon: HomeIcon,
     index: true,
     path: '/',
+    visible: true,
+  },
+  {
+    element: ListTvShowPage,
+    label: 'Tv series',
+    icon: HomeIcon,
+    path: '/tv-series',
     visible: true,
   },
   {

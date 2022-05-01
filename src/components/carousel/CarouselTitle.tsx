@@ -5,6 +5,10 @@ interface Props {
 }
 
 export default function CarouselTitle({ carouselTitle }: Props) {
+  if (!carouselTitle) {
+    return null;
+  }
+
   return (
     <Typography
       component="h6"

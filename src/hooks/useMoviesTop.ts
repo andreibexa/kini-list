@@ -1,23 +1,19 @@
-import getDiscoverMovie from 'services/discoverService';
+import { getDiscoverMovie } from 'services/discoverService';
 import { useStateValue } from 'state/state';
 import { useQuery } from 'react-query';
 import { Movies } from 'types/api/movies';
-import useProviders from './useProviders';
+import useMoviesProviders from './useMoviesProviders';
 import useCountry from './useCountry';
 
 export default function useMoviesTop() {
-  const [{ favoriteProviders }] = useStateValue();
   const { country } = useCountry();
-  const { providers } = useProviders();
-  const countryIso = country?.iso_3166_1;
-  const favoriteProvidersHash = favoriteProviders
-    ?.map((provider) => provider.provider_id)
-    .join('|');
+  const { providersMovies } = useMoviesProviders();
+  const [{ favoriteProviders }] = useStateValue();
 
   const queryResults = useQuery<Movies, Error>(
-    ['moviesTop', { countryIso, favoriteProvidersHash }],
-    () => getDiscoverMovie(countryIso, favoriteProviders),
-    { enabled: !!countryIso && !!providers },
+    ['moviesTop', { country, favoriteProviders }],
+    () => getDiscoverMovie(country?.iso_3166_1, favoriteProviders),
+    { enabled: !!country && !!providersMovies },
   );
 
   return {

@@ -1,21 +1,21 @@
-import useMoviesTop from 'hooks/useMoviesTop';
+import useTvShowsTop from 'hooks/useTvShowsTop';
 import CenteredContent from 'components/CenteredContent';
 import useMoviesByGenre from 'hooks/useMoviesByGenre';
 import LoaderEffect from 'components/LoaderEffect';
-import Alert from '@mui/material/Alert';
+import { Alert } from '@mui/material';
+import TvShowList from './components/ListTvShow';
 import Hero from './components/Hero';
-import ListMovies from './components/ListMovies';
 
-function HomePage() {
-  const { moviesTop, isLoadingMoviesTop } = useMoviesTop();
+export default function ListTvShowPage() {
+  const { tvShowsTop, isLoadingTvShowsTop } = useTvShowsTop();
   const { isLoadingMovieGenres } = useMoviesByGenre();
-  const isLoading = isLoadingMoviesTop || isLoadingMovieGenres;
+  const isLoading = isLoadingTvShowsTop || isLoadingMovieGenres;
 
-  if (moviesTop && moviesTop.length === 0) {
+  if (tvShowsTop && tvShowsTop.length === 0) {
     return (
       <CenteredContent>
         <Alert severity="error">
-          No movies found. Try to filter by another country or provider
+          No TV series found. Try to filter by another country or provider
         </Alert>
       </CenteredContent>
     );
@@ -30,9 +30,7 @@ function HomePage() {
       }}
     >
       <Hero />
-      <ListMovies />
+      <TvShowList />
     </LoaderEffect>
   );
 }
-
-export default HomePage;

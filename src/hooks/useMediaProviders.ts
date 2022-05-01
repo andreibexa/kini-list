@@ -6,7 +6,7 @@ import { ResultsShowProviders } from 'types/api/tv';
 
 const useMediaProviders = (movieId: number, type: 'movie' | 'tv') => {
   const queryInfo = useQuery<ResultsMovieProviders | ResultsShowProviders, Error>(
-    ['mediaProviders', String(movieId)],
+    ['mediaProviders', movieId],
     ({ signal }) => {
       if (type === 'movie') {
         return getMovieProviders(movieId, signal);

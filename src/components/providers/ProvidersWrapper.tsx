@@ -5,7 +5,7 @@ import React from 'react';
 import { Box, Modal } from '@mui/material';
 import { useStateValue } from 'state/state';
 import { filterActiveProviders } from 'utils/providers';
-import useProviders from 'hooks/useProviders';
+import useMoviesProviders from 'hooks/useMoviesProviders';
 import theme from 'layouts/theme';
 import THE_MOVIE_DB_BASE_URL from 'appConstants';
 import useCountry from 'hooks/useCountry';
@@ -14,16 +14,16 @@ import ProvidersList from './ProvidersList';
 
 export default function ProvidersWrapper() {
   const { country } = useCountry();
-  const { providers } = useProviders();
+  const { providersMovies } = useMoviesProviders();
   const [{ favoriteProviders }] = useStateValue();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  if (!country || !providers) {
+  if (!country || !providersMovies) {
     return null;
   }
 
-  const activeProviders = filterActiveProviders(providers, favoriteProviders);
+  const activeProviders = filterActiveProviders(providersMovies, favoriteProviders);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -60,7 +60,7 @@ export default function ProvidersWrapper() {
         <FilterListIcon sx={{ ml: 2, mr: 2 }} />
         <img
           loading="lazy"
-          height="40"
+          height="20"
           src={`https://flagcdn.com/56x42/${country.iso_3166_1.toLowerCase()}.png`}
           alt=""
         />
