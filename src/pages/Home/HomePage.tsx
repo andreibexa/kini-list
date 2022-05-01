@@ -3,13 +3,15 @@ import CenteredContent from 'components/CenteredContent';
 import useMoviesByGenre from 'hooks/useMoviesByGenre';
 import LoaderEffect from 'components/LoaderEffect';
 import Alert from '@mui/material/Alert';
+import useGenresMovies from 'hooks/useGenresMovies';
 import Hero from './components/Hero';
 import ListMovies from './components/ListMovies';
 
 function HomePage() {
   const { moviesTop, isLoadingMoviesTop } = useMoviesTop();
   const { isLoadingMovieGenres } = useMoviesByGenre();
-  const isLoading = isLoadingMoviesTop || isLoadingMovieGenres;
+  const { isLoadingGenresMovies } = useGenresMovies();
+  const isLoading = isLoadingMoviesTop || isLoadingMovieGenres || isLoadingGenresMovies;
 
   if (moviesTop && moviesTop.length === 0) {
     return (

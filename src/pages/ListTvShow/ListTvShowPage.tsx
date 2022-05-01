@@ -3,13 +3,15 @@ import CenteredContent from 'components/CenteredContent';
 import useMoviesByGenre from 'hooks/useMoviesByGenre';
 import LoaderEffect from 'components/LoaderEffect';
 import { Alert } from '@mui/material';
+import useGenresTvShows from 'hooks/useGenresTvShows';
 import TvShowList from './components/ListTvShow';
 import Hero from './components/Hero';
 
 export default function ListTvShowPage() {
   const { tvShowsTop, isLoadingTvShowsTop } = useTvShowsTop();
   const { isLoadingMovieGenres } = useMoviesByGenre();
-  const isLoading = isLoadingTvShowsTop || isLoadingMovieGenres;
+  const { isLoadingGenresTvShows } = useGenresTvShows();
+  const isLoading = isLoadingTvShowsTop || isLoadingMovieGenres || isLoadingGenresTvShows;
 
   if (tvShowsTop && tvShowsTop.length === 0) {
     return (

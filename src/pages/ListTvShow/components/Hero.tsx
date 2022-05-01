@@ -64,7 +64,7 @@ export default function Hero() {
       <Container maxWidth="xl">
         <Link
           component={RouterLink}
-          to={`/movie/${slugTitle}-${heroTvShow.id}`}
+          to={`/tv-series/${slugTitle}-${heroTvShow.id}`}
           title={heroTvShow.name}
           underline="none"
           sx={{
