@@ -1,8 +1,10 @@
 import React from 'react';
 import ScrollToTop from 'components/ScrollToTop';
+import Loader from 'components/Loader';
 import useStoreState from 'hooks/useStoreState';
 import { Route, Routes } from 'react-router-dom';
 import Layout from 'layouts/Layout';
+import Box from '@mui/material/Box';
 import pageLinks from './allRoutes';
 
 export default function RoutesComponent() {
@@ -17,7 +19,7 @@ export default function RoutesComponent() {
               key={item.label}
               path={item.path}
               element={(
-                <React.Suspense fallback="">
+                <React.Suspense fallback={<Loader />}>
                   <item.element />
                 </React.Suspense>
               )}
@@ -28,9 +30,9 @@ export default function RoutesComponent() {
         <Route
           path="*"
           element={(
-            <main style={{ padding: '1rem' }}>
+            <Box sx={{ padding: '1rem' }}>
               <p>There&apos;s nothing here!</p>
-            </main>
+            </Box>
           )}
         />
       </Routes>

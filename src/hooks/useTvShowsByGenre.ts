@@ -29,8 +29,8 @@ export default function useTvShowsByGenre() {
     : undefined;
 
   return {
-    isLoadingTvShowsGenres: isLoading,
-    isSuccessTvShowsGenres: isSuccess,
+    isLoadingTvShowsByGenres: isLoading,
+    isSuccessTvShowsByGenres: isSuccess,
     tvShowsByGenre,
   };
 }

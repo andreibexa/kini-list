@@ -18,7 +18,6 @@ function Loader() {
         sx={{
           color: red[900],
         }}
-        disableShrink
       />
     </Box>
   );

@@ -1,7 +1,6 @@
 {
   "name": "kini-list",
   "version": "1.0.0",
-  "homepage": "https://kinilist.vercel.app",
   "private": true,
   "description": "A list with movie trailers. Includes a filter for Provider and Country",
   "main": "index.js",

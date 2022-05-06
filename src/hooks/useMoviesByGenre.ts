@@ -29,8 +29,8 @@ export default function useMoviesByGenre() {
     : undefined;
 
   return {
-    isLoadingMovieGenres: isLoading,
-    isSuccessMovieGenres: isSuccess,
+    isLoadingMoviesByGenres: isLoading,
+    isSuccessMoviesByGenres: isSuccess,
     moviesByGenre,
   };
 }

@@ -1,17 +1,16 @@
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Movie';
-
+import { lazy } from 'react';
+import { AllRoutes } from 'types/allRoutes';
 /* import LineStyleIcon from '@mui/icons-material/LineStyle';
 import LocalMoviesOutlinedIcon from '@mui/icons-material/LocalMoviesOutlined';
 import MovieIcon from '@mui/icons-material/Movie'; */
-import { lazy } from 'react';
-import { AllRoutes } from 'types/allRoutes';
-import ValidateMovieId from 'routes/validateMovieId';
-import ValidateTvShowId from 'routes/validateTvShowId';
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const ListTvShowPage = lazy(() => import('pages/ListTvShow/ListTvShowPage'));
 const SearchPage = lazy(() => import('pages/Search/SearchPage'));
+const ValidateMovieId = lazy(() => import('routes/validateMovieId'));
+const ValidateTvShowId = lazy(() => import('routes/validateTvShowId'));
 
 const allRoutes: AllRoutes[] = [
   {
