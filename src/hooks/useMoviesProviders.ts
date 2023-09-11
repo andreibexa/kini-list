@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getProvidersMovies } from 'services/watchService';
 import { Providers } from 'types/api/watch';
 import useCountry from './useCountry';

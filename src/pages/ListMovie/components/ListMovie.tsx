@@ -1,35 +1,35 @@
 import Carousel from 'components/carousel/Carousel';
 import { Container, Typography } from '@mui/material';
-import useTvShowsTop from 'hooks/useTvShowsTop';
+import useMoviesTop from 'hooks/useMoviesTop';
 import RenderIfVisible from 'react-render-if-visible';
-import useGenresTvShows from 'hooks/useGenresTvShows';
-import useTvShowsByGenre from 'hooks/useTvShowsByGenre';
+import useGenresMovies from 'hooks/useGenresMovies';
+import useMoviesByGenre from 'hooks/useMoviesByGenre';
 import SplideSlideMedia from 'components/carousel/SplideSlideMedia';
 
 export default function ListTvShow() {
-  const { tvShowsTop } = useTvShowsTop();
-  const { genresTvShows } = useGenresTvShows();
-  const { tvShowsByGenre } = useTvShowsByGenre();
+  const { moviesTop } = useMoviesTop();
+  const { genresMovies } = useGenresMovies();
+  const { moviesByGenre } = useMoviesByGenre();
 
-  if (!useTvShowsTop || !genresTvShows || !tvShowsByGenre) {
+  if (!useMoviesTop || !genresMovies || !moviesByGenre) {
     return null;
   }
 
   return (
     <Container maxWidth="xl" sx={{ mt: '15vh' }}>
       <Typography variant="h1" component="h1">
-        TV Series
+        Movies
       </Typography>
       <RenderIfVisible defaultHeight={400}>
         <Carousel carouselTitle="Trending Now">
-          <SplideSlideMedia mediaList={tvShowsTop} />
+          <SplideSlideMedia mediaList={moviesTop} />
         </Carousel>
       </RenderIfVisible>
 
-      {tvShowsByGenre.map(
+      {moviesByGenre.map(
         (shows, index) => shows.results.length > 0 && (
-        <RenderIfVisible defaultHeight={400} key={genresTvShows[index].name}>
-          <Carousel carouselTitle={genresTvShows[index].name}>
+        <RenderIfVisible defaultHeight={400} key={genresMovies[index].name}>
+          <Carousel carouselTitle={genresMovies[index].name}>
             <SplideSlideMedia mediaList={shows.results} />
           </Carousel>
         </RenderIfVisible>

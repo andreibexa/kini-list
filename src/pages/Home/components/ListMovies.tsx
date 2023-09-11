@@ -4,7 +4,7 @@ import { Container } from '@mui/material';
 import useMoviesTop from 'hooks/useMoviesTop';
 import useMoviesByGenre from 'hooks/useMoviesByGenre';
 import RenderIfVisible from 'react-render-if-visible';
-import SplideSlideMovies from 'components/carousel/SplideSlideMovies';
+import SplideSlideMedia from 'components/carousel/SplideSlideMedia';
 
 export default function ListMovies() {
   const { moviesTop } = useMoviesTop();
@@ -16,17 +16,17 @@ export default function ListMovies() {
   }
 
   return (
-    <Container maxWidth="xl" sx={{ mt: '-25vh' }}>
+    <Container maxWidth="xl" sx={{ mt: '-25vh', paddingLeft: 0, paddingRight: 0 }}>
       <RenderIfVisible defaultHeight={400}>
         <Carousel carouselTitle="Trending Now">
-          <SplideSlideMovies movies={moviesTop} />
+          <SplideSlideMedia mediaList={moviesTop} />
         </Carousel>
       </RenderIfVisible>
       {moviesByGenre.map(
         (movies, index) => movies.results.length > 0 && (
         <RenderIfVisible defaultHeight={400} key={genresMovies[index].name}>
           <Carousel carouselTitle={genresMovies[index].name}>
-            <SplideSlideMovies movies={movies.results} />
+            <SplideSlideMedia mediaList={movies.results} />
           </Carousel>
         </RenderIfVisible>
         ),

@@ -7,10 +7,13 @@ export default function Footer() {
       component="footer"
       maxWidth="xl"
       sx={{
-        height: '2rem',
-        py: '4rem',
+        gap: 4,
+        height: '4rem',
+        pb: 6,
+        mt: 30,
         position: 'relative',
         display: 'flex',
+        flexWrap: 'wrap-reverse',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}
@@ -33,7 +36,7 @@ export default function Footer() {
         title="The Movie Database"
         rel="noopener noreferrer"
         target="_blank"
-        sx={{ height: 'inherit' }}
+        sx={{ height: 'inherit', maxHeight: '1.5rem' }}
       >
         <img src={logoTmdb} loading="lazy" alt="The Movie Database" height="100%" />
       </Link>

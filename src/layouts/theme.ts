@@ -118,7 +118,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: '#ffffff',
-          'min-width': '2.5em',
+          minWidth: '2.5em',
         },
       },
     },

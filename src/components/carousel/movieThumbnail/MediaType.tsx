@@ -34,7 +34,7 @@ export default function MediaType({ movie }: Props) {
   }
 
   return (
-    <Link component={RouterLink} to={`/${baseSlug}/${slug(title)}-${movie.id}`} title={title}>
+    <Link component={RouterLink} to={`/${baseSlug}/${slug(title)}/${movie.id}`} title={title}>
       <ThumbnailWrapper
         voteAverage={movie.vote_average}
         imgComponent={<ImgThumbnail title={title} posterPath={posterPath} />}

@@ -3,14 +3,10 @@ import Container from '@mui/material/Container';
 
 interface Props {
   backgroundUrl: string;
-  heroContent: JSX.Element;
+  children: JSX.Element;
 }
 
-export default function Hero({ backgroundUrl, heroContent }: Props) {
-  if (!backgroundUrl) {
-    return null;
-  }
-
+export default function Hero({ backgroundUrl, children }: Props) {
   const sxHeroUnit = {
     background: `url(${backgroundUrl}) no-repeat`,
     backgroundSize: 'cover',
@@ -33,8 +29,10 @@ export default function Hero({ backgroundUrl, heroContent }: Props) {
   };
 
   return (
-    <Box sx={sxHeroUnit}>
-      <Container maxWidth="xl">{heroContent}</Container>
+    <Box sx={sxHeroUnit} className="hero">
+      <Container maxWidth="xl" className="hero-content">
+        {children}
+      </Container>
     </Box>
   );
 }

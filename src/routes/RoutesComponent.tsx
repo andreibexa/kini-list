@@ -1,9 +1,9 @@
 import React from 'react';
 import ScrollToTop from 'components/ScrollToTop';
-import Loader from 'components/Loader';
 import useStoreState from 'hooks/useStoreState';
 import { Route, Routes } from 'react-router-dom';
 import Layout from 'layouts/Layout';
+import Loader from 'components/Loader';
 import Box from '@mui/material/Box';
 import pageLinks from './allRoutes';
 
@@ -16,14 +16,13 @@ export default function RoutesComponent() {
         <Route path="/" element={<Layout />}>
           {pageLinks.map((item) => (
             <Route
-              key={item.label}
+              key={String(item.uid)}
               path={item.path}
               element={(
                 <React.Suspense fallback={<Loader />}>
                   <item.element />
                 </React.Suspense>
               )}
-              index={item.index}
             />
           ))}
         </Route>

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getMovieProviders } from 'services/movieService';
 import { getTvShowProviders } from 'services/tvShowService';
 import { ResultsMovieProviders } from 'types/api/movies';

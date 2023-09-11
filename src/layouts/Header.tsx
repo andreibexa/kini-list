@@ -1,15 +1,10 @@
 import {
-  AppBar, Hidden, Toolbar, useScrollTrigger,
+  AppBar, Container, Toolbar, useScrollTrigger,
 } from '@mui/material';
-import MenuDesktop from './menu/MenuDesktop';
+import MenuDesktop from '../components/menu/MenuDesktop';
+import MenuMobile from '../components/menu/MenuMobile';
 
 export default function Header() {
-  /*   const [state, setState] = useState({
-    drawerOpen: false,
-  })
-
-  const { drawerOpen } = state */
-
   /**
    * [scrollTrigger - respond to user scroll actions]
    */
@@ -31,12 +26,12 @@ export default function Header() {
   return (
     <AppBar position="fixed" sx={SxAppBar}>
       <Toolbar disableGutters>
-        <Hidden smUp initialWidth="xl">
-          {/* <MenuMobile /> */}
-        </Hidden>
-        <Hidden xsDown initialWidth="xl">
+        <Container sx={{ display: { md: 'none', xs: 'block' } }}>
+          <MenuMobile />
+        </Container>
+        <Container maxWidth="xl" disableGutters sx={{ display: { md: 'block', xs: 'none' } }}>
           <MenuDesktop />
-        </Hidden>
+        </Container>
       </Toolbar>
     </AppBar>
   );

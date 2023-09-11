@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from '@mui/material';
 import LoaderEffect from 'components/LoaderEffect';
-import MediaType from 'components/movieThumbnail/MediaType';
+import MediaType from 'components/carousel/movieThumbnail/MediaType';
 import useSearchMulti from 'hooks/useSearchMulti';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -33,9 +33,7 @@ export default function SearchPage() {
             position: 'relative',
           }}
         >
-          {movies?.results.map((movie) => (
-            <MediaType movie={movie} key={movie.id} />
-          ))}
+          {movies?.results.map((movie) => <MediaType movie={movie} key={movie.id} />)}
         </Box>
       </Container>
     </LoaderEffect>

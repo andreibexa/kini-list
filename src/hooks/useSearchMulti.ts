@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import searchMulti from 'services/searchService';
 import { MultiMediaTypeResults } from 'types/api/generic';
 import useCountry from './useCountry';

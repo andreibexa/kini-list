@@ -10,7 +10,7 @@ export default function ThumbnailWrapper({ voteAverage, imgComponent }: Props) {
   return (
     <ThumbnailStyled>
       <Typography component="span" variant="h6" className="badge">
-        {voteAverage || ''}
+        {voteAverage.toFixed(1) || ''}
       </Typography>
       {imgComponent}
     </ThumbnailStyled>

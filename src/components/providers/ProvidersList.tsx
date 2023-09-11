@@ -5,7 +5,11 @@ import CenteredContent from 'components/CenteredContent';
 import useMovieProviders from 'hooks/useMoviesProviders';
 import ProviderSingle from './ProviderSingle';
 
-export default function ProvidersList() {
+interface Props {
+  closeModal: () => void;
+}
+
+function ProvidersList({ closeModal }: Props) {
   const { providersMovies, isSuccess } = useMovieProviders();
   const hasEntries = providersMovies ? providersMovies.length : false;
 
@@ -42,9 +46,10 @@ export default function ProvidersList() {
       </Typography>
       <ImageList cols={3} gap={10}>
         {providersMovies.map((provider) => (
-          <ProviderSingle provider={provider} key={provider.provider_id} />
+          <ProviderSingle provider={provider} key={provider.provider_id} closeModal={closeModal} />
         ))}
       </ImageList>
     </>
   );
 }
+export default ProvidersList;

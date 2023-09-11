@@ -56,7 +56,9 @@ function HomePage() {
       }}
     >
       {heroMovie && (
-        <Hero backgroundUrl={img.src} heroContent={<HeroContent movie={heroMovie} />} />
+        <Hero backgroundUrl={img.src}>
+          <HeroContent movie={heroMovie} />
+        </Hero>
       )}
       <ListMovies />
     </LoaderEffect>

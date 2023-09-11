@@ -1,6 +1,6 @@
 import { getDiscoverTvShow } from 'services/discoverService';
 import { useStateValue } from 'state/state';
-import { QueriesOptions, useQueries } from 'react-query';
+import { QueriesOptions, useQueries } from '@tanstack/react-query';
 import { Shows } from 'types/api/tv';
 import useGenresTvShows from './useGenresTvShows';
 import useCountry from './useCountry';

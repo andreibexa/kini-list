@@ -20,6 +20,9 @@ function ThumbnailStyled({ children }: PropsBadge) {
         },
         '> img': {
           border: '5px solid #000000',
+          height: '100%',
+          objectFit: 'cover',
+          width: '100%',
         },
         '> .badge': {
           position: 'absolute',
@@ -33,6 +36,7 @@ function ThumbnailStyled({ children }: PropsBadge) {
           background: 'rgba(0,0,0,.8)',
           color: 'rgba(245, 197, 24)',
           zIndex: 1,
+          fontSize: '1.2em',
         },
         '> .splide__spinner': {
           borderColor: red[900],

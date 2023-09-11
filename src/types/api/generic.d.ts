@@ -8,6 +8,7 @@ import {
 } from 'themoviedb-typescript/build/src/interfaces/generic';
 
 export * from 'themoviedb-typescript/build/src/interfaces/generic';
+
 export interface PersonListResultWithMediaType extends PersonListResult {
   media_type: 'person';
 }

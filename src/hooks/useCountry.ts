@@ -1,5 +1,5 @@
 import useCountries from 'hooks/useCountries';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getCountryByIp } from 'services/configurationService';
 import { useStateValue } from 'state/state';
 import { Countries } from 'types/api/configuration';

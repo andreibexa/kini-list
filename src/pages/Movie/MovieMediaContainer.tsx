@@ -27,6 +27,7 @@ export default function MovieMediaContainer({ movie }: Props) {
     <Paper
       sx={{
         position: 'relative',
+        m: 6,
         '& .react-player-wrapper': {
           paddingTop: '56.25%',
         },
@@ -38,7 +39,6 @@ export default function MovieMediaContainer({ movie }: Props) {
         '.backdrop': {
           width: '100%',
           height: 'auto',
-          border: '1.5em solid transparent',
         },
         '.overlay': {
           boxShadow: 'inset 34px 34px 140px 40px #000000',

@@ -33,30 +33,41 @@ function CarouselWrapper({ sx = [], children }: PropsCarouselWrapper) {
             zIndex: 1,
           },
           '.splide__arrow': {
-            background: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            borderRadius: 0,
             height: '100%',
-          },
-          '.splide__arrow--next': {
-            right: '-27px',
-            '&:hover>svg': {
-              transform: 'scale(2)',
-            },
-          },
-          '.splide__arrow--prev': {
-            left: '-27px',
-            '&>svg': {
-              transform: 'scale(-1)',
-            },
-            '&:hover>svg': {
-              transform: 'scale(-2)',
-            },
+            width: '5em',
+            transition: 'width 0.3s ease' /* Adaugăm tranziția pentru width */,
           },
           '.splide__arrow svg': {
             fill: red[900],
-            width: '1.4em',
-            height: '1.4em',
+            width: '2em',
+            height: '2em',
             transition:
               'opacity .2s ease-out,transform .2s ease-out,-webkit-transform .2s ease-out',
+          },
+          '.splide__arrow--next': {
+            right: 0,
+            paddingRight: '.3em',
+          },
+          '@media screen and (min-width: 1024px)': {
+            '.splide__arrow &:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              width: '9em',
+            },
+            '.splide__arrow--next:hover > svg': {
+              transform: 'scale(2)',
+            },
+            '.splide__arrow--prev:hover > svg': {
+              transform: 'scale(-2)',
+            },
+          },
+          '.splide__arrow--prev': {
+            left: 0,
+            paddingLeft: '.3em',
+            '&>svg': {
+              transform: 'scale(-1)',
+            },
           },
         },
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

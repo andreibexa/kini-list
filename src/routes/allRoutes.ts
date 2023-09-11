@@ -1,72 +1,63 @@
 import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Movie';
-import { lazy } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import TvIcon from '@mui/icons-material/Tv';
+import MovieIcon from '@mui/icons-material/Movie';
+import { lazy, createElement } from 'react';
 import { AllRoutes } from 'types/allRoutes';
-/* import LineStyleIcon from '@mui/icons-material/LineStyle';
-import LocalMoviesOutlinedIcon from '@mui/icons-material/LocalMoviesOutlined';
-import MovieIcon from '@mui/icons-material/Movie'; */
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const ListTvShowPage = lazy(() => import('pages/ListTvShow/ListTvShowPage'));
+const ListMoviesPage = lazy(() => import('pages/ListMovie/ListMoviePage'));
 const SearchPage = lazy(() => import('pages/Search/SearchPage'));
 const ValidateMovieId = lazy(() => import('routes/validateMovieId'));
 const ValidateTvShowId = lazy(() => import('routes/validateTvShowId'));
 
+// TODO: De testat fara lazy
 const allRoutes: AllRoutes[] = [
   {
+    uid: 0,
     element: HomePage,
     label: 'Home',
-    icon: HomeIcon,
+    icon: createElement(HomeIcon, {}),
     index: true,
     path: '/',
     visible: true,
   },
   {
-    element: ListTvShowPage,
-    label: 'Tv series',
-    icon: HomeIcon,
-    path: '/tv-series',
+    uid: 1,
+    element: ListMoviesPage,
+    label: 'Movies',
+    icon: createElement(MovieIcon, {}),
+    path: '/movies',
     visible: true,
   },
   {
+    uid: 2,
+    element: ListTvShowPage,
+    label: 'Tv series',
+    icon: createElement(TvIcon, {}),
+    path: '/tv',
+    visible: true,
+  },
+  {
+    uid: 3,
     element: SearchPage,
     label: 'Search',
-    icon: SearchIcon,
+    icon: createElement(SearchIcon, {}),
     index: false,
     path: '/search/:search',
     visible: false,
   },
   {
+    uid: 4,
     element: ValidateMovieId,
-    label: 'Movie',
-    path: '/movie/:title-:id',
+    path: '/movie/:title/:id',
   },
   {
+    uid: 5,
     element: ValidateTvShowId,
-    label: 'TV Series',
-    path: '/tv-series/:title-:id',
+    path: '/tv/:title/:id',
   },
-  /* {
-    label: 'Movies',
-    component: React.createElement('<>', {}, Home()),
-    index: false,
-    path: '/',
-    icon: React.createElement('<>', {}, MovieIcon),
-  },
-  {
-    label: 'Series',
-    component: React.createElement('<>', {}, Home()),
-    index: false,
-    path: '/',
-    icon: React.createElement('<>', {}, LocalMoviesOutlinedIcon),
-  },
-  {
-    label: 'More ...',
-    component: React.createElement('<>', {}, Home()),
-    index: false,
-    path: '/',
-    icon: React.createElement('<>', {}, LineStyleIcon),
-  }, */
 ];
 
 export default allRoutes;

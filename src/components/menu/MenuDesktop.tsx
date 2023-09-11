@@ -7,6 +7,8 @@ import allRoutes from 'routes/allRoutes';
 import ProvidersWrapper from 'components/providers/ProvidersWrapper';
 import theme from 'layouts/theme';
 
+// TODO:: de testat fara lazy
+
 const buttons = allRoutes.map(
   (item: AllRoutes) => item.visible && (
   <Button
@@ -14,7 +16,11 @@ const buttons = allRoutes.map(
     to={item.path}
     key={item.label}
     color="secondary"
-    sx={{ height: theme.spacing(12) }}
+    sx={{
+      fontSize: 20,
+      fontWeight: 'regular',
+      height: theme.spacing(12),
+    }}
   >
     {item.label}
   </Button>
@@ -28,15 +34,16 @@ function MenuDesktop() {
       sx={{
         width: '100%',
         display: 'flex',
-        gap: 2,
+        gap: 4,
         alignItems: 'center',
+        py: 2,
       }}
     >
       <Box>
         <Logo />
       </Box>
-      <Box>{buttons}</Box>
       <SearchInput />
+      <Box>{buttons}</Box>
       <ProvidersWrapper />
     </Container>
   );

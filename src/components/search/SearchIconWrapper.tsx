@@ -10,13 +10,11 @@ export default function SearchIconWrapper({ children }: Props) {
     <Box
       sx={{
         px: 2,
-        py: 0,
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
       }}
     >
       {children}

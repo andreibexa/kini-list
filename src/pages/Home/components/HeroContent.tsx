@@ -23,11 +23,13 @@ function BoxContainer({ children }: PropsBox) {
         borderRadius: theme.shape.borderRadius,
         position: 'relative',
         zIndex: 10,
-        px: 8,
-        py: 8,
+        px: 10,
+        py: 10,
         width: {
-          xl: '47%',
           xs: '100%',
+          sm: '75%',
+          md: '60%',
+          lg: '50%',
         },
       }}
     >
@@ -56,7 +58,7 @@ export default function HeroContent({ movie }: Props) {
   return (
     <Link
       component={RouterLink}
-      to={`/movie/${slugTitle}-${movie.id}`}
+      to={`/movie/${slugTitle}/${movie.id}`}
       title={movie.title}
       underline="none"
       sx={{
@@ -87,7 +89,18 @@ export default function HeroContent({ movie }: Props) {
         </Typography>
 
         {/* Description */}
-        <Typography sx={{ py: 8 }}>{movie.overview}</Typography>
+        <Typography
+          sx={{
+            my: 8,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+          }}
+        >
+          {movie.overview}
+        </Typography>
 
         {/* Play button */}
         <Box

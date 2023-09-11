@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getMovieGenres } from 'services/genreService';
 import { GenresMovieList } from 'types/api/genres';
 

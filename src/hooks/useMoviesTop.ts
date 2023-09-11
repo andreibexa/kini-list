@@ -1,6 +1,6 @@
 import { getDiscoverMovie } from 'services/discoverService';
 import { useStateValue } from 'state/state';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Movies } from 'types/api/movies';
 import useMoviesProviders from './useMoviesProviders';
 import useCountry from './useCountry';

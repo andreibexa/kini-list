@@ -42,19 +42,21 @@ export default function SearchBar() {
   return (
     <SearchWrapper>
       <SearchIconWrapper>
-        <SearchIcon />
+        <SearchIcon sx={{ color: '#D3D3D3' }} />
       </SearchIconWrapper>
       <InputBase
-        placeholder="Movie, tv show, actor"
+        placeholder="Search for movies or tv series"
         inputProps={{ 'aria-label': 'search' }}
         value={searchInput.value}
         onChange={(event) => handleChange(event)}
         sx={{
           color: 'inherit',
-          height: theme.spacing(12),
+          height: theme.spacing(10),
           '& .MuiInputBase-input': {
-            paddingLeft: '3rem',
+            paddingLeft: 40,
             width: '100%',
+            fontSize: 18,
+            fontWeight: 'light',
             md: {
               width: '20ch',
             },

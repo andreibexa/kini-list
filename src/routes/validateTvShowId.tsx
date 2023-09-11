@@ -4,11 +4,9 @@ import TvShowPage from 'pages/TvShow/TvShowPage';
 import { useParams } from 'react-router-dom';
 
 export default function ValidateTvShowId() {
-  const params = useParams();
-  const title = params.title?.match(/\w+/);
-  const showId = params.id?.match(/\d+/);
+  const { title, id } = useParams();
 
-  if (!showId || !title) {
+  if (!id || !title) {
     return (
       <CenteredContent>
         <Alert severity="error">Tv Series not found.</Alert>
@@ -16,5 +14,5 @@ export default function ValidateTvShowId() {
     );
   }
 
-  return <TvShowPage showId={Number(showId.input)} />;
+  return <TvShowPage showId={Number(id)} />;
 }

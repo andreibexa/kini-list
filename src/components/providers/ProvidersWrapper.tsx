@@ -29,7 +29,7 @@ export default function ProvidersWrapper() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const closeModal = () => {
     setAnchorEl(null);
   };
 
@@ -44,11 +44,12 @@ export default function ProvidersWrapper() {
         sx={{
           height: theme.spacing(12),
           '&>.provider-logo': {
-            width: '2.5rem',
-            ml: 1,
+            width: '2.5em',
+            ml: 1.5,
           },
         }}
       >
+        <FilterListIcon sx={{ ml: 2, fontSize: '1.5rem' }} />
         {activeProviders.map((provider) => (
           <img
             src={`${THE_MOVIE_DB_BASE_URL}w92${provider.logo_path}`}
@@ -57,20 +58,22 @@ export default function ProvidersWrapper() {
             className="provider-logo"
           />
         ))}
-        <FilterListIcon sx={{ ml: 2, mr: 2 }} />
-        <img
-          loading="lazy"
-          height="20"
-          src={`https://flagcdn.com/56x42/${country.iso_3166_1.toLowerCase()}.png`}
-          alt=""
-        />
+
+        {activeProviders.length === 0 ? (
+          <Box
+            component="img"
+            src={`https://flagcdn.com/56x42/${country.iso_3166_1.toLowerCase()}.png`}
+            alt=""
+            sx={{ ml: 2, height: 25, width: 'auto' }}
+          />
+        ) : null}
       </Button>
-      <Modal open={open} onClose={handleClose} keepMounted>
+      <Modal open={open} onClose={closeModal} keepMounted>
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          onClose={closeModal}
           PaperProps={{
             sx: {
               p: 2,
@@ -85,7 +88,7 @@ export default function ProvidersWrapper() {
             }}
           >
             <CountrySelect />
-            <ProvidersList />
+            <ProvidersList closeModal={closeModal} />
           </Box>
         </Menu>
       </Modal>

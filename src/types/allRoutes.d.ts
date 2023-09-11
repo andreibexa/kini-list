@@ -1,8 +1,9 @@
 export interface AllRoutes {
+  uid: number;
   element: React.FC;
-  label: string;
+  label?: string;
   path: string;
   index?: boolean;
-  icon?: DetailedReactHTMLElement<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  icon?: ReactElement;
   visible?: boolean;
 }

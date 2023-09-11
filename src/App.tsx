@@ -1,5 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StateProvider } from 'state/state';
 import { reducer } from 'state/reducer';
 import RoutesComponent from 'routes/RoutesComponent';
